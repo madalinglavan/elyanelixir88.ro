@@ -1,5 +1,9 @@
 window.services = {
 
+    /* =====================================================
+       MASAJ
+    ===================================================== */
+
     massage: {
 
         relaxare: {
@@ -9,29 +13,24 @@ window.services = {
             options: [
 
                 {
-                    label: "Esențial",
-                    duration: 60,
-                    price: 199
+                    label: "Relaxare Locală",
+                    duration: 30,
+                    price: 69
                 },
 
                 {
-                    label: "Echilibru",
-
-                    duration: 90,
-
-                    price: 279,
-
+                    label: "Relaxare Completă",
+                    duration: 50,
+                    price: 89,
                     recommended: true,
-
                     badge: "Recomandat",
-
                     description: "Cea mai aleasă experiență"
                 },
 
                 {
-                    label: "Signature",
-                    duration: 120,
-                    price: 349
+                    label: "Relaxare Profundă",
+                    duration: 80,
+                    price: 139
                 }
 
             ]
@@ -45,22 +44,23 @@ window.services = {
             options: [
 
                 {
-                    label: "Standard",
-                    duration: 60,
-                    price: 229
+                    label: "Zonă Localizată",
+                    duration: 30,
+                    price: 69
                 },
 
                 {
-                    label: "Premium",
-                    duration: 90,
-                    price: 309,
-                    recommended: true
+                    label: "Complet",
+                    duration: 50,
+                    price: 89,
+                    recommended: true,
+                    badge: "Recomandat"
                 },
 
                 {
-                    label: "Signature",
-                    duration: 120,
-                    price: 389
+                    label: "Terapie Extinsă",
+                    duration: 80,
+                    price: 139
                 }
 
             ]
@@ -74,16 +74,17 @@ window.services = {
             options: [
 
                 {
-                    label: "Standard",
-                    duration: 60,
-                    price: 249
+                    label: "Localizat",
+                    duration: 30,
+                    price: 79
                 },
 
                 {
-                    label: "Intens",
-                    duration: 90,
-                    price: 329,
-                    recommended: true
+                    label: "Complet",
+                    duration: 50,
+                    price: 109,
+                    recommended: true,
+                    badge: "Recomandat"
                 }
 
             ]
@@ -97,16 +98,17 @@ window.services = {
             options: [
 
                 {
-                    label: "Local",
-                    duration: 45,
-                    price: 189
+                    label: "O zonă",
+                    duration: 30,
+                    price: 69
                 },
 
                 {
                     label: "Complet",
-                    duration: 60,
-                    price: 249,
-                    recommended: true
+                    duration: 50,
+                    price: 99,
+                    recommended: true,
+                    badge: "Recomandat"
                 }
 
             ]
@@ -120,16 +122,17 @@ window.services = {
             options: [
 
                 {
-                    label: "Relax",
-                    duration: 75,
-                    price: 299
+                    label: "Zonă Localizată",
+                    duration: 30,
+                    price: 89
                 },
 
                 {
-                    label: "Premium",
-                    duration: 90,
-                    price: 369,
-                    recommended: true
+                    label: "Experiență Completă",
+                    duration: 50,
+                    price: 139,
+                    recommended: true,
+                    badge: "Recomandat"
                 }
 
             ]
@@ -144,15 +147,17 @@ window.services = {
 
                 {
                     label: "Signature",
-                    duration: 90,
-                    price: 399
+                    duration: 60,
+                    price: 169
                 },
 
                 {
                     label: "Luxury",
-                    duration: 120,
-                    price: 499,
-                    recommended: true
+                    duration: 80,
+                    price: 219,
+                    recommended: true,
+                    badge: "Premium",
+                    description: "Ritualul complet Elyan Elixir"
                 }
 
             ]
@@ -162,6 +167,9 @@ window.services = {
     },
 
 
+    /* =====================================================
+       FITNESS
+    ===================================================== */
 
     fitness: {
 
@@ -172,22 +180,23 @@ window.services = {
             options: [
 
                 {
-                    label: "Evaluare",
-                    duration: 45,
-                    price: 129
+                    label: "Evaluare Inițială",
+                    duration: 30,
+                    price: 49
                 },
 
                 {
-                    label: "Standard",
+                    label: "Antrenament Standard",
+                    duration: 50,
+                    price: 79,
+                    recommended: true,
+                    badge: "Recomandat"
+                },
+
+                {
+                    label: "Performance",
                     duration: 60,
-                    price: 179,
-                    recommended: true
-                },
-
-                {
-                    label: "Premium",
-                    duration: 90,
-                    price: 249
+                    price: 99
                 }
 
             ]
@@ -201,16 +210,17 @@ window.services = {
             options: [
 
                 {
-                    label: "Standard",
-                    duration: 60,
-                    price: 179
+                    label: "Express",
+                    duration: 30,
+                    price: 59
                 },
 
                 {
-                    label: "Premium",
-                    duration: 90,
-                    price: 249,
-                    recommended: true
+                    label: "Complet",
+                    duration: 50,
+                    price: 79,
+                    recommended: true,
+                    badge: "Recomandat"
                 }
 
             ]
@@ -224,16 +234,17 @@ window.services = {
             options: [
 
                 {
-                    label: "Standard",
-                    duration: 60,
-                    price: 189
+                    label: "Express",
+                    duration: 30,
+                    price: 59
                 },
 
                 {
                     label: "Performance",
-                    duration: 90,
-                    price: 259,
-                    recommended: true
+                    duration: 50,
+                    price: 89,
+                    recommended: true,
+                    badge: "Recomandat"
                 }
 
             ]
@@ -247,16 +258,17 @@ window.services = {
             options: [
 
                 {
-                    label: "Mobilitate",
-                    duration: 50,
-                    price: 159
+                    label: "Mobilitate Localizată",
+                    duration: 30,
+                    price: 49
                 },
 
                 {
-                    label: "Premium",
-                    duration: 70,
-                    price: 219,
-                    recommended: true
+                    label: "Mobilitate Completă",
+                    duration: 50,
+                    price: 79,
+                    recommended: true,
+                    badge: "Recomandat"
                 }
 
             ]
@@ -270,16 +282,17 @@ window.services = {
             options: [
 
                 {
-                    label: "Cardio",
-                    duration: 50,
-                    price: 159
+                    label: "Cardio Express",
+                    duration: 30,
+                    price: 49
                 },
 
                 {
-                    label: "Performance",
-                    duration: 70,
-                    price: 219,
-                    recommended: true
+                    label: "Cardio Performance",
+                    duration: 50,
+                    price: 79,
+                    recommended: true,
+                    badge: "Recomandat"
                 }
 
             ]
@@ -294,15 +307,16 @@ window.services = {
 
                 {
                     label: "Signature",
-                    duration: 90,
-                    price: 299
+                    duration: 60,
+                    price: 119
                 },
 
                 {
                     label: "Luxury",
-                    duration: 120,
-                    price: 399,
-                    recommended: true
+                    duration: 75,
+                    price: 149,
+                    recommended: true,
+                    badge: "Premium"
                 }
 
             ]
@@ -311,205 +325,236 @@ window.services = {
 
     },
 
-medicalPedicure: {
 
-    pedichiuraCompleta: {
+    /* =====================================================
+       PEDICHIURĂ MEDICALĂ
+    ===================================================== */
 
-        title: "Pedichiură Medicală Completă",
+    medicalPedicure: {
 
-        options: [
+        pedichiuraCompleta: {
 
-            {
-                label: "Serviciu",
-                price: 249,
-                recommended: true
-            }
+            title: "Pedichiură Medicală Completă",
 
-        ]
+            options: [
+
+                {
+                    label: "De la",
+                    duration: 60,
+                    price: 149,
+                    recommended: true,
+                    badge: "Recomandat",
+                    description: "Prețul final depinde de complexitate"
+                }
+
+            ]
+
+        },
+
+        hiperkeratoze: {
+
+            title: "Îndepărtarea Hiperkeratozelor",
+
+            options: [
+
+                {
+                    label: "De la",
+                    duration: 30,
+                    price: 99,
+                    recommended: true,
+                    description: "Durata depinde de zona tratată"
+                }
+
+            ]
+
+        },
+
+        unghiiIncarnate: {
+
+            title: "Îngrijirea Unghiilor Încarnate",
+
+            options: [
+
+                {
+                    label: "De la",
+                    duration: 30,
+                    price: 99,
+                    recommended: true,
+                    description: "Evaluarea stabilește procedura necesară"
+                }
+
+            ]
+
+        },
+
+        calcaieCrapate: {
+
+            title: "Tratament pentru Călcâie Crăpate",
+
+            options: [
+
+                {
+                    label: "De la",
+                    duration: 45,
+                    price: 119,
+                    recommended: true,
+                    description: "Prețul variază după complexitate"
+                }
+
+            ]
+
+        },
+
+        ingrijirePreventiva: {
+
+            title: "Îngrijire Preventivă",
+
+            options: [
+
+                {
+                    label: "Întreținere",
+                    duration: 45,
+                    price: 89,
+                    recommended: true
+                }
+
+            ]
+
+        },
+
+        signature: {
+
+            title: "Signature Foot Wellness",
+
+            options: [
+
+                {
+                    label: "Signature",
+                    duration: 75,
+                    price: 199,
+                    recommended: true,
+                    badge: "Premium"
+                }
+
+            ]
+
+        }
 
     },
 
-    hiperkeratoze: {
 
-        title: "Îndepărtarea Hiperkeratozelor",
+    /* =====================================================
+       HEALTHY NAILS
+    ===================================================== */
 
-        options: [
+    nails: {
 
-            {
-                label: "Serviciu",
-                price: 149,
-                recommended: true
-            }
+        consultatie: {
 
-        ]
+            title: "Consultație & Evaluare Nail Care",
 
-    },
+            options: [
 
-    unghiiIncarnate: {
+                {
+                    label: "Evaluare",
+                    duration: 15,
+                    price: 29,
+                    recommended: true
+                }
 
-        title: "Îngrijirea Unghiilor Încarnate",
+            ]
 
-        options: [
+        },
 
-            {
-                label: "Serviciu",
-                price: 179,
-                recommended: true
-            }
+        manichiura: {
 
-        ]
+            title: "Manichiură Igienică",
 
-    },
+            options: [
 
-    calcaieCrapate: {
+                {
+                    label: "Îngrijire Completă",
+                    duration: 30,
+                    price: 49,
+                    recommended: true,
+                    badge: "Recomandat"
+                }
 
-        title: "Tratament pentru Călcâie Crăpate",
+            ]
 
-        options: [
+        },
 
-            {
-                label: "Serviciu",
-                price: 169,
-                recommended: true
-            }
+        tratamente: {
 
-        ]
+            title: "Tratamente pentru Unghii",
 
-    },
+            options: [
 
-    ingrijirePreventiva: {
+                {
+                    label: "De la",
+                    duration: 30,
+                    price: 69,
+                    recommended: true,
+                    description: "Tratamentul este ales după evaluare"
+                }
 
-        title: "Îngrijire Preventivă",
+            ]
 
-        options: [
+        },
 
-            {
-                label: "Serviciu",
-                price: 139,
-                recommended: true
-            }
+        reconstructie: {
 
-        ]
+            title: "Reconstrucția Unghiilor",
 
-    },
+            options: [
 
-    signature: {
+                {
+                    label: "O unghie",
+                    duration: 15,
+                    price: 20,
+                    recommended: true,
+                    description: "Preț calculat pentru o singură unghie"
+                }
 
-        title: "Signature Foot Wellness",
+            ]
 
-        options: [
+        },
 
-            {
-                label: "Signature",
-                price: 299,
-                recommended: true,
-                badge: "Premium"
-            }
+        cuticule: {
 
-        ]
+            title: "Îngrijirea Cuticulelor",
+
+            options: [
+
+                {
+                    label: "Îngrijire",
+                    duration: 20,
+                    price: 39,
+                    recommended: true
+                }
+
+            ]
+
+        },
+
+        signature: {
+
+            title: "Elyan Signature Nail Care",
+
+            options: [
+
+                {
+                    label: "Signature",
+                    duration: 60,
+                    price: 119,
+                    recommended: true,
+                    badge: "Premium"
+                }
+
+            ]
+
+        }
 
     }
-
-},
-nails: {
-
-    consultatie: {
-
-        title: "Consultație & Evaluare Nail Care",
-
-        options: [
-
-            {
-                label: "Serviciu",
-                price: 99,
-                recommended: true
-            }
-
-        ]
-
-    },
-
-    manichiura: {
-
-        title: "Manichiură Igienică",
-
-        options: [
-
-            {
-                label: "Serviciu",
-                price: 149,
-                recommended: true
-            }
-
-        ]
-
-    },
-
-    tratamente: {
-
-        title: "Tratamente pentru Unghii",
-
-        options: [
-
-            {
-                label: "Serviciu",
-                price: 179,
-                recommended: true
-            }
-
-        ]
-
-    },
-
-    reconstructie: {
-
-        title: "Reconstrucția Unghiilor",
-
-        options: [
-
-            {
-                label: "Serviciu",
-                price: 199,
-                recommended: true
-            }
-
-        ]
-
-    },
-
-    cuticule: {
-
-        title: "Îngrijirea Cuticulelor",
-
-        options: [
-
-            {
-                label: "Serviciu",
-                price: 99,
-                recommended: true
-            }
-
-        ]
-
-    },
-
-    signature: {
-
-        title: "Elyan Signature Nail Care",
-
-        options: [
-
-            {
-                label: "Signature",
-                price: 299,
-                recommended: true,
-                badge: "Premium"
-            }
-
-        ]
-
-    }
-
-}
 
 };

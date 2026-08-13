@@ -798,35 +798,30 @@ function updateSelection(
     button
 ) {
 
-    priceElement.textContent = option.price + " Lei";
+    priceElement.textContent =
+        option.price + " Lei";
 
     const durationSection = option.duration
-        ? `
+        ? `Durată: ${option.duration} minute`
+        : null;
 
-Durată:
-${option.duration} minute`
-        : "";
+    const messageLines = [
+        "Bună ziua!",
+        "Doresc o programare pentru:",
+        `*${data.title}*`,
+        `Experiență: *${option.label}*`,
+        durationSection,
+        `Preț: *${option.price} Lei*`,
+        "Îmi puteți spune când aveți locuri disponibile?",
+        "Mulțumesc!"
+    ];
 
-    const message =
-`Bună ziua!
-
-Doresc o programare pentru:
-
-${data.title}
-
-Experiență:
-${option.label}${durationSection}
-
-Preț:
-${option.price} Lei
-
-Îmi puteți spune când aveți locuri disponibile?
-
-Mulțumesc!`;
+    const message = messageLines
+        .filter(Boolean)
+        .join("\n");
 
     button.href =
         "https://wa.me/40769729403?text=" +
         encodeURIComponent(message);
-
 }
 

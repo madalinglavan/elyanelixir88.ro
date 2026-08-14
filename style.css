@@ -8,7 +8,7 @@
 --gold:#D4AF37;
 --gold-light:#E9C96B;
 --white:#ffffff;
---background:#F8F8F5;
+--background:#08a880;
 --gray:#777777;
 --dark:#1F1F1F;
 --black:#111111;
@@ -741,7 +741,6 @@ display:none;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 .hero-content h1{
 
@@ -759,10 +758,54 @@ display:none;
 }
 .hero-description{
     color: #ffffff;
+    margin-bottom: 100px;
 }
 .hero-subtitle{
-    color: wheat;
-    font-size: 14px;
+    position: relative;
+    display: inline-block;
+
+    padding: 10px 16px 8px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--primary-light),
+            var(--primary)
+        );
+
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 10px;
+    margin-bottom: 30px;
+    color: #fff;
+
+    font-family: "DM Serif Display", serif;
+    font-size: .9em;
+    font-weight: 400;
+    font-style: italic;
+    line-height: 1.1;
+
+    letter-spacing: .04em;
+    text-transform: uppercase;
+
+    box-shadow:
+        0 8px 22px rgba(8, 141, 99, 0.445),
+        inset 0 1px 0 rgba(255, 255, 255, .18);
+
+    text-shadow:
+        0 1px 2px rgba(0, 0, 0, .18);
+
+    transform: translateY(-2px);
+
+    transition:
+        transform .3s ease,
+        box-shadow .3s ease,
+        background .3s ease;
+    margin-bottom: 70px;
+}
+.hero-subtitle h1, h2 {
+    margin-bottom: 20px;
+    text-decoration: solid;
+    
 }
 
 
@@ -864,8 +907,7 @@ p{
 @media (max-width:768px){
 
 .container{
-    width:98%;
-    
+    width:96%;
 }
 
 section{
@@ -1699,13 +1741,7 @@ linear-gradient(
     content:"";
     position:absolute;
     inset:0;
-    background:
-        radial-gradient(circle at top right,
-        rgba(212,175,55,.06),
-        transparent 40%),
-        radial-gradient(circle at bottom left,
-        rgba(11,84,60,.05),
-        transparent 45%);
+    
     pointer-events:none;
 }
 
@@ -2350,7 +2386,7 @@ font-family:var(--heading);
     backdrop-filter:blur(12px);
     -webkit-backdrop-filter:blur(12px);
 
-    color:#fff;
+    color:var(--membership-gold);
 
     font-size:24px;
 
@@ -3255,6 +3291,10 @@ PRICE
 }
 .section-title h2{
     margin-bottom: 20px;
+    color: #ffffff;
+}
+.section-title p {
+    color: var(--white);
 }
 .section-title span {
 

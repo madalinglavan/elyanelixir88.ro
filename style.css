@@ -74,7 +74,6 @@ scroll-behavior:smooth;
 
 body{
 font-family:var(--text);
-background:var(--background);
 color:var(--dark);
 overflow-x:hidden;
 
@@ -750,7 +749,7 @@ display:none;
         0 2px 10px rgba(0,0,0,.35),
         0 0 25px rgba(15,106,77,.35);
     text-transform: uppercase;
-    margin-bottom: 24px;
+    margin-bottom: 6px;
 }
 
 .hero-content h2{
@@ -832,7 +831,7 @@ display:none;
     display:flex;
     align-items:center;
     gap:10px;
-    color:var(--gold);
+    color:var(--white);
     font-size:15px;
     font-weight:500;
     transition:var(--transition);
@@ -853,7 +852,7 @@ display:none;
 }
 
 .hero-social a:hover{
-    color:var(--white);
+    color:var(--gold);
 }
 
 .hero-social a:hover i{
@@ -1387,7 +1386,7 @@ footer::before{
 
 .service-card{
 
-    background:rgba(255,255,255,.96);
+    background:rgb(255, 255, 255);
 
     border-radius:30px;
 
@@ -1721,17 +1720,7 @@ letter-spacing:1px;
 text-transform:uppercase;
 font-size:.75rem;
 }
-#fitness{
-background:
 
-linear-gradient(
-180deg,
-#faf8f3 0%,
-#ffffff 100%
-
-);
-
-}
 #fitness{
     position:relative;
     overflow:hidden;
@@ -1750,13 +1739,6 @@ linear-gradient(
     position:relative;
     overflow:hidden;
 
-    background:
-        linear-gradient(
-        180deg,
-        #ffffff 0%,
-        #faf8f3 100%
-
-    );
 
 }
 
@@ -3071,8 +3053,8 @@ PRICE
 
     font-size:2rem;
     font-family:Arial, Helvetica, sans-serif;
-    color:var(--gold);
-    text-shadow: 2px 0 1px rgb(92, 67, 0);
+    color:var(--primary-dark);
+    text-shadow: 1px 0 1px rgb(0, 0, 0);
     transition:.25s;
 
 }
@@ -3291,10 +3273,10 @@ PRICE
 }
 .section-title h2{
     margin-bottom: 20px;
-    color: #ffffff;
+    text-align: center;
 }
 .section-title p {
-    color: var(--white);
+    text-align: center;
 }
 .section-title span {
 
@@ -3396,20 +3378,31 @@ PRICE
     padding:180px 0;
 
     background:
-        radial-gradient(circle at top left,
-        rgba(212,175,55,.08),
-        transparent 32%),
 
-        radial-gradient(circle at bottom right,
-        rgba(212,175,55,.05),
-        transparent 35%),
+    radial-gradient(
+        circle at top left,
+        rgba(45, 140, 104, .22),
+        transparent 36%
+    ),
 
-        linear-gradient(
-            180deg,
-            #0d1110 0%,
-            #121917 50%,
-            #0d1110 100%
-        );
+    radial-gradient(
+        circle at bottom right,
+        rgba(15, 106, 77, .20),
+        transparent 40%
+    ),
+
+    radial-gradient(
+        circle at center,
+        rgba(212, 175, 55, .045),
+        transparent 42%
+    ),
+
+    linear-gradient(
+        180deg,
+        #071a14 0%,
+        var(--primary-dark) 48%,
+        #06150f 100%
+    );
 
 }
 
@@ -3578,7 +3571,7 @@ PRICE
 
     margin:0;
 
-    margin-bottom:42px;
+    margin-bottom:12px;
 
     color:var(--membership-text);
 
@@ -3605,10 +3598,10 @@ PRICE
 
 .membership-motto span{
 
-    display:block;
-
+    display:flex;
+    flex-wrap: wrap;
     color:#fff;
-
+    justify-content: center;
     font-size:clamp(1.7rem,2.4vw,2.6rem);
 
     font-weight:300;
@@ -3720,10 +3713,9 @@ PRICE
 .membership-preview{
 
     display:flex;
-
     justify-content:center;
-
     align-items:center;
+    text-align: center;
 
 }
 
@@ -3735,11 +3727,11 @@ PRICE
 .membership-card-preview{
 
     position:relative;
-
-    width:100%;
-
+    justify-content: center;
+    width:75%;
+    align-items: center;
     max-width:420px;
-
+    text-align: center;
     padding:55px 45px;
 
     border-radius:30px;
@@ -3812,9 +3804,10 @@ PRICE
     display:flex;
 
     align-items:center;
-
+    text-align: center;
     justify-content:center;
-
+    margin-left: 50%;
+    transform: translate(-50%);
     margin-bottom:35px;
 
     border-radius:50%;

@@ -34,9 +34,6 @@
         <meta property="og:description"
             content="Masaj • Fitness • Pedichiură Medicală • Ingrijirea unghiilor">
 
-        <meta property="og:image"
-            content="images/og-image.jpg">
-
         <meta property="og:url"
             content="https://www.elyanelixir88.ro">
 
@@ -51,8 +48,6 @@
         <meta name="twitter:description"
             content="Salon premium în Târgu Cărbunești">
 
-        <meta name="twitter:image"
-            content="images/og-image.jpg">
         <link rel="icon" href="images/favicon.png">
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect"
@@ -71,6 +66,7 @@
     </head>
 
     <body>
+        <a class="skip-link" href="#main-content">Sari la conținut</a>
         <div
             class="page-transition"
             aria-hidden="true"
@@ -337,7 +333,10 @@
                 <!-- ================= MOBILE MENU ================= -->
 
                 <button class="burger"
-                    aria-label="Deschide meniul">
+                    type="button"
+                    aria-label="Deschide meniul"
+                    aria-controls="mobile-navigation"
+                    aria-expanded="false">
 
                     <span></span>
                     <span></span>
@@ -348,13 +347,18 @@
             </nav>
         </header>
 
-            <div class="mobile-menu">
+            <div class="mobile-menu" id="mobile-navigation" aria-hidden="true">
                 <div class="mobile-menu-content">
-                <a href="#home">Acasă</a>
+                <div class="mobile-menu-head">
+                    <div class="mobile-menu-brand"><img src="images/logo.png" alt="" aria-hidden="true"><div><strong>Elyan Elixir 88</strong><span>Relaxare · Sănătate · Frumusețe</span></div></div>
+                    <p>Alege experiența potrivită pentru tine</p>
+                </div>
+                <a href="#home" class="mobile-home-link"><i class="fa-solid fa-house" aria-hidden="true"></i><span>Acasă</span></a>
+                <span class="mobile-menu-eyebrow">Serviciile noastre</span>
                 <!-- ================= MASAJ ================= -->
                 <div class="mobile-dropdown">
-                    <button class="mobile-dropdown-btn">
-                        <span>Masaj</span>
+                    <button class="mobile-dropdown-btn" type="button" aria-expanded="false">
+                        <span class="mobile-category-icon"><i class="fa-solid fa-spa"></i></span><span class="mobile-category-copy"><strong>Masaj</strong><small>Relaxare & recuperare</small></span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="mobile-submenu">
@@ -389,8 +393,8 @@
                 <!-- ================= FITNESS ================= -->
 
                 <div class="mobile-dropdown">
-                    <button class="mobile-dropdown-btn">
-                        <span>Fitness</span>
+                    <button class="mobile-dropdown-btn" type="button" aria-expanded="false">
+                        <span class="mobile-category-icon"><i class="fa-solid fa-dumbbell"></i></span><span class="mobile-category-copy"><strong>Fitness</strong><small>Forță & mobilitate</small></span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="mobile-submenu">
@@ -424,8 +428,8 @@
                 <!-- ================= PEDICHIURĂ ================= -->
 
                 <div class="mobile-dropdown">
-                    <button class="mobile-dropdown-btn">
-                        <span>Pedichiură Medicală</span>
+                    <button class="mobile-dropdown-btn" type="button" aria-expanded="false">
+                        <span class="mobile-category-icon"><i class="fa-solid fa-shoe-prints"></i></span><span class="mobile-category-copy"><strong>Pedichiură Medicală</strong><small>Îngrijire specializată</small></span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="mobile-submenu">
@@ -459,8 +463,8 @@
                     <!-- ================= NAIL CARE ================= -->
 
                 <div class="mobile-dropdown">
-                    <button class="mobile-dropdown-btn">
-                        <span>Healthy Nails</span>
+                    <button class="mobile-dropdown-btn" type="button" aria-expanded="false">
+                        <span class="mobile-category-icon"><i class="fa-solid fa-hand-sparkles"></i></span><span class="mobile-category-copy"><strong>Healthy Nails</strong><small>Sănătatea unghiilor</small></span>
                         <i class="fa-solid fa-chevron-down"></i>
                     </button>
                     <div class="mobile-submenu">
@@ -491,19 +495,21 @@
                     </div>
                 </div>
 
-                <a href="#despre">Povestea Elyan Elixir 88</a>
-                <a href="#echipa">Echipa</a>
-                <a href="#contact">Contact</a>
+                <span class="mobile-menu-eyebrow mobile-menu-eyebrow-secondary">Descoperă Elyan</span>
+                <div class="mobile-quick-links">
+                    <a href="#despre"><i class="fa-regular fa-gem"></i><span>Povestea noastră</span></a>
+                    <a href="#echipa"><i class="fa-solid fa-people-group"></i><span>Echipa</span></a>
+                    <a href="#contact"><i class="fa-solid fa-location-dot"></i><span>Contact</span></a>
+                </div>
 
                 <div class="mobile-contact">
+                    <a href="https://wa.me/40769729403?text=Bună! Doresc o programare." target="_blank" rel="noopener noreferrer" class="mobile-menu-cta">
+                        <i class="fa-brands fa-whatsapp"></i><span><small>Programări rapide</small>Scrie-ne pe WhatsApp</span><i class="fa-solid fa-arrow-right"></i>
+                    </a>
+                    <div class="mobile-contact-details">
                     <a href="tel:+40769729403">
                         <i class="fa-solid fa-phone"></i>
                         +40 769 729 403
-                    </a>
-                    <a href="https://wa.me/40769729403?text=Bună! Doresc o programare."
-                    target="_blank">
-                        <i class="fa-brands fa-whatsapp"></i>
-                        WhatsApp
                     </a>
                     <a href="https://www.google.com/maps/place/Strada+G%C4%83rii+24,+215500+T%C3%A2rgu+C%C4%83rbune%C8%99ti/@44.9548155,23.5060661,650m/data=!3m2!1e3!4b1!4m6!3m5!1s0x47527f469e046257:0xd457b21e8ea69012!8m2!3d44.9548155!4d23.508641!16s%2Fg%2F11cs7skjn_?entry=ttu&g_ep=EgoyMDI2MDcxMi4wIKXMDSoASAFQAw%3D%3D"
                     target="_blank"
@@ -513,6 +519,7 @@
                         Strada Gării nr. 24<br>
                         Târgu Cărbunești
                     </a>
+                    </div>
                 </div>
 
                 </div>
@@ -699,7 +706,10 @@
                             </li>
 
                         </ul>
-                       <a href="membership.html" class="btn-membership">
+                       <a href="https://wa.me/40769729403?text=Bună!%20Aș%20dori%20mai%20multe%20informații%20despre%20Elyan%20Membership."
+                          class="btn-membership"
+                          target="_blank"
+                          rel="noopener noreferrer">
 
                             Accesează
 
@@ -717,7 +727,7 @@
 
     </section>
 
-        <main>
+        <main id="main-content">
 
             <!-- ========================================================= -->
             <!-- MASAJ -->
@@ -4289,6 +4299,14 @@
         </div>
 
     </footer>
+        <a class="mobile-booking-bar"
+            href="https://wa.me/40769729403?text=Bună!%20Aș%20dori%20o%20programare."
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="Programează-te prin WhatsApp">
+            <i class="fa-brands fa-whatsapp" aria-hidden="true"></i>
+            <span>Programează-te</span>
+        </a>
         <!-- ========================================================= -->
         <!-- JAVASCRIPT -->
         <!-- ========================================================= -->

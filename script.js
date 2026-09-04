@@ -125,6 +125,8 @@ function initPageNavigationTransition() {
             mobileMenu?.classList.remove("active");
             overlay?.classList.remove("active");
             document.body.classList.remove("menu-open");
+            burger?.setAttribute("aria-expanded", "false");
+            mobileMenu?.setAttribute("aria-hidden", "true");
 
             /* POZIȚIA SECȚIUNII */
 
@@ -204,11 +206,6 @@ document.addEventListener(
     initPageNavigationTransition
 );
 
-document.addEventListener(
-    "DOMContentLoaded",
-    initPageNavigationTransition
-);
-
 
 
 
@@ -253,6 +250,8 @@ if (scrollIndicator) {
 
 document.addEventListener("click", (e) => {
 
+    if (!mobileMenu || !burger || !overlay) return;
+
     const insideMenu = mobileMenu.contains(e.target);
 
     const insideBurger = burger.contains(e.target);
@@ -266,6 +265,8 @@ document.addEventListener("click", (e) => {
         document.body.classList.remove("menu-open");
 
         overlay.classList.remove("active");
+        burger.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-hidden", "true");
 
     }
 
@@ -289,6 +290,8 @@ window.addEventListener("resize", () => {
 
         document.body.classList.remove("menu-open");
         overlay.classList.remove("active");
+        burger.setAttribute("aria-expanded", "false");
+        mobileMenu.setAttribute("aria-hidden", "true");
 
     }
 
@@ -297,36 +300,6 @@ window.addEventListener("resize", () => {
 
 
 
-
-/*==================================================
-
-    PREVENT DOUBLE CLICK
-
-==================================================*/
-
-let menuLocked = false;
-
-burger.addEventListener("click", () => {
-
-    if (menuLocked) return;
-
-    menuLocked = true;
-
-    setTimeout(() => {
-
-        menuLocked = false;
-
-    }, 300);
-
-});
-
-
-
-/*==================================================
-
-    END PART 1
-
-==================================================*/
 
 /*==================================================
 
@@ -536,7 +509,7 @@ console.log(
 
 
 
-overlay.addEventListener("click",()=>{
+overlay?.addEventListener("click",()=>{
 
     burger.classList.remove("active");
 
@@ -545,6 +518,9 @@ overlay.addEventListener("click",()=>{
     overlay.classList.remove("active");
 
     document.body.classList.remove("menu-open");
+
+    burger?.setAttribute("aria-expanded", "false");
+    mobileMenu?.setAttribute("aria-hidden", "true");
 
 });
 
@@ -564,7 +540,9 @@ if (burger) {
         mobileMenu.classList.toggle("active");
         overlay.classList.toggle("active");
         document.body.classList.toggle("menu-open");
-        console.log("BURGER");
+        const isOpen = mobileMenu.classList.contains("active");
+        burger.setAttribute("aria-expanded", String(isOpen));
+        mobileMenu.setAttribute("aria-hidden", String(!isOpen));
 
     });
 
@@ -575,11 +553,15 @@ document.addEventListener("keydown",(e)=>{
 
 if(e.key==="Escape"){
 
-burger.classList.remove("active");
+burger?.classList.remove("active");
 
-mobileMenu.classList.remove("active");
+mobileMenu?.classList.remove("active");
 
 document.body.classList.remove("menu-open");
+
+overlay?.classList.remove("active");
+burger?.setAttribute("aria-expanded", "false");
+mobileMenu?.setAttribute("aria-hidden", "true");
 
 }
 
@@ -619,11 +601,13 @@ document.querySelectorAll(".mobile-dropdown-btn").forEach(button => {
 
             if(item !== current){
                 item.classList.remove("active");
+                item.querySelector(".mobile-dropdown-btn")?.setAttribute("aria-expanded", "false");
             }
 
         });
 
         current.classList.toggle("active");
+        this.setAttribute("aria-expanded", String(current.classList.contains("active")));
 
     });
 
@@ -679,18 +663,7 @@ function initServiceCard(card) {
     const category = card.dataset.category;
     const service = card.dataset.service;
 
-    console.log("CATEGORY:", category);
-    console.log("SERVICE:", service);
-
-    console.log("SERVICES:", window.services);
-    console.log("CATEGORY OBJECT:", window.services[category]);
-    console.log("SERVICE OBJECT:", window.services[category]?.[service]);
-
-
-
-   const data = window.services[category][service];
-
-console.log("DATA =", data);
+    const data = window.services?.[category]?.[service];
 
     if (!data) {
 
@@ -712,6 +685,9 @@ function renderOptions(card, data) {
     if (!selector || !priceElement || !button) return;
 
     selector.innerHTML = "";
+    selector.setAttribute("role", "group");
+    selector.setAttribute("aria-label", "Alege durata și tipul experienței");
+    priceElement.setAttribute("aria-live", "polite");
 
     let defaultIndex =
         data.options.findIndex(option => option.recommended);
@@ -724,6 +700,7 @@ function renderOptions(card, data) {
 
         durationCard.type = "button";
         durationCard.className = "duration-card";
+        durationCard.setAttribute("aria-pressed", String(index === defaultIndex));
 
         if (index === defaultIndex) {
             durationCard.classList.add("active");
@@ -747,9 +724,13 @@ function renderOptions(card, data) {
 
             selector
                 .querySelectorAll(".duration-card")
-                .forEach(btn => btn.classList.remove("active"));
+                .forEach(btn => {
+                    btn.classList.remove("active");
+                    btn.setAttribute("aria-pressed", "false");
+                });
 
             durationCard.classList.add("active");
+            durationCard.setAttribute("aria-pressed", "true");
 
             updateSelection(
                 data,

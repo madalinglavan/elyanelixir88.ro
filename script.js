@@ -30,7 +30,7 @@ window.addEventListener("load", () => {
 
         loader.classList.add("hide");
 
-    }, 1200);
+    }, 550);
 
 });
 
@@ -673,6 +673,22 @@ function initServiceCard(card) {
     }
 
     renderOptions(card, data);
+
+    const firstBlock = card.querySelector(".service-block");
+    if (firstBlock && !card.querySelector(".service-details-toggle")) {
+        const detailsButton = document.createElement("button");
+        detailsButton.type = "button";
+        detailsButton.className = "service-details-toggle";
+        detailsButton.setAttribute("aria-expanded", "false");
+        detailsButton.innerHTML = `<span>Descoperă experiența</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i>`;
+        firstBlock.before(detailsButton);
+
+        detailsButton.addEventListener("click", () => {
+            const isOpen = card.classList.toggle("details-open");
+            detailsButton.setAttribute("aria-expanded", String(isOpen));
+            detailsButton.querySelector("span").textContent = isOpen ? "Ascunde detaliile" : "Descoperă experiența";
+        });
+    }
 
 }
 

@@ -13,6 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="membership.css?v=20260908b">
     <link rel="stylesheet" href="membership-card.css?v=20260908">
+    <link rel="stylesheet" href="membership-form.css?v=20260908">
 </head>
 <body>
     <header class="membership-header">
@@ -42,6 +43,14 @@
 
             <aside class="summary" aria-labelledby="summary-title">
                 <div class="summary-head"><span>Pasul 2</span><h2 id="summary-title">Abonamentul tău</h2><p>Selecția lunară</p></div>
+                <div class="member-form">
+                    <div class="member-form__heading"><span>Personalizează cardul</span><small>Ambele câmpuri sunt obligatorii</small></div>
+                    <div class="member-form__grid">
+                        <label for="client-name"><span><i class="fa-regular fa-user"></i> Numele clientului</span><input id="client-name" type="text" maxlength="60" autocomplete="name" placeholder="Ex: Maria Popescu" required></label>
+                        <label for="membership-month"><span><i class="fa-regular fa-calendar"></i> Luna serviciilor</span><input id="membership-month" type="month" required></label>
+                    </div>
+                    <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
+                </div>
                 <div id="summary-items" class="summary-items"><div class="empty-state"><i class="fa-regular fa-heart"></i><p>Serviciile selectate vor apărea aici.</p></div></div>
                 <div class="calculation">
                     <div><span>Total servicii</span><strong id="subtotal">0 Lei</strong></div>
@@ -63,6 +72,10 @@
             <div class="digital-card" id="digital-card-preview">
                 <div class="digital-card__top"><i class="fa-solid fa-crown"></i><span>ELYAN ELIXIR 88</span><small>MEMBERSHIP</small></div>
                 <div class="digital-card__intro"><span>Abonamentul tău lunar</span><h2 id="digital-card-title">Experiențe alese pentru tine</h2></div>
+                <div class="digital-card__identity">
+                    <div><small>Pregătit pentru</small><strong id="card-client-name">—</strong></div>
+                    <div><small>Luna abonamentului</small><strong id="card-month">—</strong></div>
+                </div>
                 <div id="digital-card-items" class="digital-card__items"></div>
                 <div class="digital-card__totals">
                     <div><span>Total servicii</span><strong id="card-subtotal">0 Lei</strong></div>
@@ -79,6 +92,6 @@
     </div>
 
     <script src="services.js?v=20260908"></script>
-    <script src="membership.js?v=20260908b"></script>
+    <script src="membership.js?v=20260908c"></script>
 </body>
 </html>

@@ -8,7 +8,12 @@ const totalEl=document.querySelector("#total");
 const generateButton=document.querySelector("#generate-card");
 const orderButton=document.querySelector("#whatsapp-order");
 const modal=document.querySelector("#card-modal");
+const clientNameInput=document.querySelector("#client-name");
+const monthInput=document.querySelector("#membership-month");
+const formMessage=document.querySelector("#form-message");
 const money=value=>new Intl.NumberFormat("ro-RO",{maximumFractionDigits:2}).format(value)+" Lei";
+const currentMonth=new Date().toISOString().slice(0,7);monthInput.min=currentMonth;monthInput.value=currentMonth;
+const formatMonth=value=>{if(!value)return "";const formatted=new Date(`${value}-01T12:00:00`).toLocaleDateString("ro-RO",{month:"long",year:"numeric"});return formatted.charAt(0).toUpperCase()+formatted.slice(1)};
 
 Object.entries(window.services).forEach(([categoryKey,services],categoryIndex)=>{
   const meta=categoryMeta[categoryKey];
@@ -43,16 +48,21 @@ function updateSummary(){
   const total=subtotal-discount;
   summaryItems.innerHTML=items.length?items.map(item=>`<div class="summary-item"><div><strong>${item.title}</strong><span>${item.detail} × ${item.quantity}</span></div><b>${money(item.price*item.quantity)}</b></div>`).join(""):`<div class="empty-state"><i class="fa-regular fa-heart"></i><p>Serviciile selectate vor apărea aici.</p></div>`;
   subtotalEl.textContent=money(subtotal);discountEl.textContent="− "+money(discount);totalEl.textContent=money(total);
-  if(!items.length){generateButton.classList.add("is-disabled");generateButton.disabled=true;orderButton.href="#";return}
-  const lines=["Bună ziua! Doresc abonamentul Elyan Membership:","",...items.map(item=>`• ${item.title} — ${item.detail} × ${item.quantity}: ${money(item.price*item.quantity)}`),"",`Total servicii: ${money(subtotal)}`,`Reducere Membership (15%): − ${money(discount)}`,`TOTAL DE PLATĂ: ${money(total)}`,"","Îmi puteți confirma disponibilitatea?"];
-  orderButton.href="https://wa.me/40769729403?text="+encodeURIComponent(lines.join("\n"));generateButton.classList.remove("is-disabled");generateButton.disabled=false;
+  const clientName=clientNameInput.value.trim(),month=formatMonth(monthInput.value),isComplete=items.length&&clientName&&month;
+  if(!isComplete){generateButton.classList.add("is-disabled");generateButton.disabled=true;orderButton.href="#";return}
+  const lines=["Bună ziua! Doresc abonamentul Elyan Membership:","",`Client: ${clientName}`,`Luna abonamentului: ${month}`,"",...items.map(item=>`• ${item.title} — ${item.detail} × ${item.quantity}: ${money(item.price*item.quantity)}`),"",`Total servicii: ${money(subtotal)}`,`Reducere Membership (15%): − ${money(discount)}`,`TOTAL DE PLATĂ: ${money(total)}`,"","Îmi puteți confirma disponibilitatea?"];
+  orderButton.href="https://wa.me/40769729403?text="+encodeURIComponent(lines.join("\n"));generateButton.classList.remove("is-disabled");generateButton.disabled=false;formMessage.classList.remove("is-visible");formMessage.textContent="";
 }
 
+[clientNameInput,monthInput].forEach(input=>input.addEventListener("input",updateSummary));
+
 generateButton.addEventListener("click",()=>{
-  const items=[...selections.values()];if(!items.length)return;
+  const items=[...selections.values()],clientName=clientNameInput.value.trim(),month=formatMonth(monthInput.value);
+  if(!clientName||!month||!items.length){formMessage.textContent="Completează numele și luna, apoi alege cel puțin un serviciu.";formMessage.classList.add("is-visible");(!clientName?clientNameInput:!month?monthInput:null)?.focus();return}
   const subtotal=items.reduce((sum,item)=>sum+item.price*item.quantity,0),discount=subtotal*.15,total=subtotal-discount;
   document.querySelector("#digital-card-items").innerHTML=items.map(item=>`<div class="digital-card__item"><div><strong>${item.title}</strong><span>${item.detail} × ${item.quantity} ședințe/lună</span></div><b>${money(item.price*item.quantity)}</b></div>`).join("");
   document.querySelector("#card-subtotal").textContent=money(subtotal);document.querySelector("#card-discount").textContent="− "+money(discount);document.querySelector("#card-total").textContent=money(total);
+  document.querySelector("#card-client-name").textContent=clientName;document.querySelector("#card-month").textContent=month;
   modal.classList.add("is-open");modal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");modal.querySelector(".modal-close").focus();
 });
 
@@ -61,16 +71,17 @@ modal.querySelectorAll("[data-close-modal]").forEach(el=>el.addEventListener("cl
 document.addEventListener("keydown",event=>{if(event.key==="Escape"&&modal.classList.contains("is-open"))closeModal()});
 
 document.querySelector("#download-card").addEventListener("click",()=>{
-  const items=[...selections.values()];if(!items.length)return;
+  const items=[...selections.values()],clientName=clientNameInput.value.trim(),month=formatMonth(monthInput.value);if(!items.length||!clientName||!month)return;
   const subtotal=items.reduce((sum,item)=>sum+item.price*item.quantity,0),discount=subtotal*.15,total=subtotal-discount;
-  const canvas=document.createElement("canvas"),width=1080,rowHeight=88,height=520+items.length*rowHeight;canvas.width=width;canvas.height=height;
+  const canvas=document.createElement("canvas"),width=1080,rowHeight=88,height=630+items.length*rowHeight;canvas.width=width;canvas.height=height;
   const ctx=canvas.getContext("2d"),gradient=ctx.createLinearGradient(0,0,width,height);gradient.addColorStop(0,"#0f6a4d");gradient.addColorStop(1,"#032a20");ctx.fillStyle=gradient;ctx.fillRect(0,0,width,height);
   ctx.strokeStyle="rgba(212,175,55,.55)";ctx.lineWidth=3;ctx.strokeRect(34,34,width-68,height-68);
   ctx.fillStyle="#efd477";ctx.font="700 30px Georgia";ctx.fillText("ELYAN ELIXIR 88",76,105);ctx.font="600 18px Arial";ctx.fillText("MEMBERSHIP  •  ABONAMENT LUNAR",76,140);
   ctx.fillStyle="#ffffff";ctx.font="700 54px Georgia";ctx.fillText("Experiențe alese pentru tine",76,224);
-  let y=282;items.forEach(item=>{ctx.fillStyle="rgba(255,255,255,.075)";ctx.fillRect(68,y-38,width-136,70);ctx.fillStyle="#fff";ctx.font="600 21px Arial";ctx.fillText(item.title.slice(0,52),88,y-8);ctx.fillStyle="rgba(255,255,255,.62)";ctx.font="17px Arial";ctx.fillText(`${item.detail} × ${item.quantity} ședințe/lună`,88,y+19);ctx.fillStyle="#efd477";ctx.font="700 21px Arial";ctx.textAlign="right";ctx.fillText(money(item.price*item.quantity),width-88,y+3);ctx.textAlign="left";y+=rowHeight});
+  ctx.fillStyle="rgba(255,255,255,.07)";ctx.fillRect(68,256,width-136,88);ctx.fillStyle="rgba(255,255,255,.58)";ctx.font="600 15px Arial";ctx.fillText("PREGĂTIT PENTRU",88,284);ctx.fillText("LUNA ABONAMENTULUI",570,284);ctx.fillStyle="#fff";ctx.font="700 25px Arial";ctx.fillText(clientName.slice(0,38),88,320);ctx.fillStyle="#efd477";ctx.fillText(month,570,320);
+  let y=402;items.forEach(item=>{ctx.fillStyle="rgba(255,255,255,.075)";ctx.fillRect(68,y-38,width-136,70);ctx.fillStyle="#fff";ctx.font="600 21px Arial";ctx.fillText(item.title.slice(0,52),88,y-8);ctx.fillStyle="rgba(255,255,255,.62)";ctx.font="17px Arial";ctx.fillText(`${item.detail} × ${item.quantity} ședințe/lună`,88,y+19);ctx.fillStyle="#efd477";ctx.font="700 21px Arial";ctx.textAlign="right";ctx.fillText(money(item.price*item.quantity),width-88,y+3);ctx.textAlign="left";y+=rowHeight});
   y+=12;ctx.strokeStyle="rgba(255,255,255,.2)";ctx.beginPath();ctx.moveTo(76,y);ctx.lineTo(width-76,y);ctx.stroke();
   ctx.fillStyle="rgba(255,255,255,.72)";ctx.font="20px Arial";ctx.fillText("Total servicii",76,y+48);ctx.textAlign="right";ctx.fillText(money(subtotal),width-76,y+48);ctx.fillStyle="#efd477";ctx.fillText(`Reducere Membership (15%): − ${money(discount)}`,width-76,y+86);ctx.fillStyle="#fff";ctx.font="700 28px Arial";ctx.fillText("TOTAL DE PLATĂ",width-350,y+140);ctx.fillStyle="#efd477";ctx.font="700 42px Georgia";ctx.fillText(money(total),width-76,y+140);ctx.textAlign="left";
   ctx.fillStyle="rgba(255,255,255,.45)";ctx.font="16px Arial";ctx.fillText("Relaxare  •  Sănătate  •  Frumusețe",76,height-72);
-  const link=document.createElement("a");link.download="elyan-membership.png";link.href=canvas.toDataURL("image/png",1);link.click();
+  const safeName=clientName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");const link=document.createElement("a");link.download=`elyan-membership-${safeName||"client"}-${monthInput.value}.png`;link.href=canvas.toDataURL("image/png",1);link.click();
 });

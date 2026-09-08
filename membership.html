@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="membership.css?v=20260908b">
     <link rel="stylesheet" href="membership-card.css?v=20260908">
-    <link rel="stylesheet" href="membership-form.css?v=20260908">
+    <link rel="stylesheet" href="membership-form.css?v=20260908b">
 </head>
 <body>
     <header class="membership-header">
@@ -27,7 +27,7 @@
             <div>
                 <span class="eyebrow">Elyan Membership</span>
                 <h1>Construiește abonamentul potrivit pentru tine.</h1>
-                <p>Alege serviciile și numărul de ședințe dorit în fiecare lună. Reducerea de 15% este aplicată automat întregului abonament.</p>
+                <p>Alege minimum 3 ședințe în fiecare lună, din același serviciu sau din servicii diferite. Reducerea de 15% este aplicată automat întregului abonament.</p>
             </div>
             <div class="intro-badge"><i class="fa-solid fa-gem"></i><span><small>Beneficiu inclus</small>15% reducere lunară</span></div>
         </section>
@@ -57,6 +57,7 @@
                     <div class="discount"><span>Reducere Membership <em>−15%</em></span><strong id="discount">− 0 Lei</strong></div>
                     <div class="final-total"><span>Total de plată</span><strong id="total">0 Lei</strong></div>
                 </div>
+                <p id="eligibility-message" class="eligibility-message"><i class="fa-solid fa-lock"></i><span>Mai adaugă 3 ședințe pentru a activa abonamentul.</span></p>
                 <button id="generate-card" class="order-button is-disabled" type="button" disabled>
                     <i class="fa-solid fa-wand-magic-sparkles"></i><span>Generează cardul digital</span><i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -92,6 +93,6 @@
     </div>
 
     <script src="services.js?v=20260908"></script>
-    <script src="membership.js?v=20260908c"></script>
+    <script src="membership.js?v=20260908d"></script>
 </body>
 </html>

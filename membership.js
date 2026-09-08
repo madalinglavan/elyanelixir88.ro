@@ -11,6 +11,7 @@ const modal=document.querySelector("#card-modal");
 const clientNameInput=document.querySelector("#client-name");
 const monthInput=document.querySelector("#membership-month");
 const formMessage=document.querySelector("#form-message");
+const eligibilityMessage=document.querySelector("#eligibility-message");
 const money=value=>new Intl.NumberFormat("ro-RO",{maximumFractionDigits:2}).format(value)+" Lei";
 const currentMonth=new Date().toISOString().slice(0,7);monthInput.min=currentMonth;monthInput.value=currentMonth;
 const formatMonth=value=>{if(!value)return "";const formatted=new Date(`${value}-01T12:00:00`).toLocaleDateString("ro-RO",{month:"long",year:"numeric"});return formatted.charAt(0).toUpperCase()+formatted.slice(1)};
@@ -46,9 +47,13 @@ function updateSummary(){
   const subtotal=items.reduce((sum,item)=>sum+item.price*item.quantity,0);
   const discount=subtotal*.15;
   const total=subtotal-discount;
+  const sessionCount=items.reduce((sum,item)=>sum+item.quantity,0);
   summaryItems.innerHTML=items.length?items.map(item=>`<div class="summary-item"><div><strong>${item.title}</strong><span>${item.detail} × ${item.quantity}</span></div><b>${money(item.price*item.quantity)}</b></div>`).join(""):`<div class="empty-state"><i class="fa-regular fa-heart"></i><p>Serviciile selectate vor apărea aici.</p></div>`;
   subtotalEl.textContent=money(subtotal);discountEl.textContent="− "+money(discount);totalEl.textContent=money(total);
-  const clientName=clientNameInput.value.trim(),month=formatMonth(monthInput.value),isComplete=items.length&&clientName&&month;
+  const remainingSessions=Math.max(0,3-sessionCount);
+  eligibilityMessage.classList.toggle("is-ready",remainingSessions===0);
+  eligibilityMessage.innerHTML=remainingSessions?`<i class="fa-solid fa-lock"></i><span>Mai adaugă ${remainingSessions} ${remainingSessions===1?"ședință":"ședințe"} pentru a activa abonamentul.</span>`:`<i class="fa-solid fa-circle-check"></i><span>Abonament eligibil — reducerea de 15% este activă.</span>`;
+  const clientName=clientNameInput.value.trim(),month=formatMonth(monthInput.value),isComplete=sessionCount>=3&&clientName&&month;
   if(!isComplete){generateButton.classList.add("is-disabled");generateButton.disabled=true;orderButton.href="#";return}
   const lines=["Bună ziua! Doresc abonamentul Elyan Membership:","",`Client: ${clientName}`,`Luna abonamentului: ${month}`,"",...items.map(item=>`• ${item.title} — ${item.detail} × ${item.quantity}: ${money(item.price*item.quantity)}`),"",`Total servicii: ${money(subtotal)}`,`Reducere Membership (15%): − ${money(discount)}`,`TOTAL DE PLATĂ: ${money(total)}`,"","Îmi puteți confirma disponibilitatea?"];
   orderButton.href="https://wa.me/40769729403?text="+encodeURIComponent(lines.join("\n"));generateButton.classList.remove("is-disabled");generateButton.disabled=false;formMessage.classList.remove("is-visible");formMessage.textContent="";
@@ -57,8 +62,8 @@ function updateSummary(){
 [clientNameInput,monthInput].forEach(input=>input.addEventListener("input",updateSummary));
 
 generateButton.addEventListener("click",()=>{
-  const items=[...selections.values()],clientName=clientNameInput.value.trim(),month=formatMonth(monthInput.value);
-  if(!clientName||!month||!items.length){formMessage.textContent="Completează numele și luna, apoi alege cel puțin un serviciu.";formMessage.classList.add("is-visible");(!clientName?clientNameInput:!month?monthInput:null)?.focus();return}
+  const items=[...selections.values()],sessionCount=items.reduce((sum,item)=>sum+item.quantity,0),clientName=clientNameInput.value.trim(),month=formatMonth(monthInput.value);
+  if(!clientName||!month||sessionCount<3){formMessage.textContent="Completează numele și luna, apoi alege minimum 3 ședințe.";formMessage.classList.add("is-visible");(!clientName?clientNameInput:!month?monthInput:null)?.focus();return}
   const subtotal=items.reduce((sum,item)=>sum+item.price*item.quantity,0),discount=subtotal*.15,total=subtotal-discount;
   document.querySelector("#digital-card-items").innerHTML=items.map(item=>`<div class="digital-card__item"><div><strong>${item.title}</strong><span>${item.detail} × ${item.quantity} ședințe/lună</span></div><b>${money(item.price*item.quantity)}</b></div>`).join("");
   document.querySelector("#card-subtotal").textContent=money(subtotal);document.querySelector("#card-discount").textContent="− "+money(discount);document.querySelector("#card-total").textContent=money(total);
@@ -71,7 +76,7 @@ modal.querySelectorAll("[data-close-modal]").forEach(el=>el.addEventListener("cl
 document.addEventListener("keydown",event=>{if(event.key==="Escape"&&modal.classList.contains("is-open"))closeModal()});
 
 document.querySelector("#download-card").addEventListener("click",()=>{
-  const items=[...selections.values()],clientName=clientNameInput.value.trim(),month=formatMonth(monthInput.value);if(!items.length||!clientName||!month)return;
+  const items=[...selections.values()],sessionCount=items.reduce((sum,item)=>sum+item.quantity,0),clientName=clientNameInput.value.trim(),month=formatMonth(monthInput.value);if(sessionCount<3||!clientName||!month)return;
   const subtotal=items.reduce((sum,item)=>sum+item.price*item.quantity,0),discount=subtotal*.15,total=subtotal-discount;
   const canvas=document.createElement("canvas"),width=1080,rowHeight=88,height=630+items.length*rowHeight;canvas.width=width;canvas.height=height;
   const ctx=canvas.getContext("2d"),gradient=ctx.createLinearGradient(0,0,width,height);gradient.addColorStop(0,"#0f6a4d");gradient.addColorStop(1,"#032a20");ctx.fillStyle=gradient;ctx.fillRect(0,0,width,height);

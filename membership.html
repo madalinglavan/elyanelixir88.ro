@@ -11,7 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
-    <link rel="stylesheet" href="membership.css?v=20260908">
+    <link rel="stylesheet" href="membership.css?v=20260908b">
+    <link rel="stylesheet" href="membership-card.css?v=20260908">
 </head>
 <body>
     <header class="membership-header">
@@ -47,15 +48,37 @@
                     <div class="discount"><span>Reducere Membership <em>−15%</em></span><strong id="discount">− 0 Lei</strong></div>
                     <div class="final-total"><span>Total de plată</span><strong id="total">0 Lei</strong></div>
                 </div>
-                <a id="whatsapp-order" class="order-button is-disabled" href="#" aria-disabled="true">
-                    <i class="fa-brands fa-whatsapp"></i><span>Trimite configurația</span><i class="fa-solid fa-arrow-right"></i>
-                </a>
+                <button id="generate-card" class="order-button is-disabled" type="button" disabled>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i><span>Generează cardul digital</span><i class="fa-solid fa-arrow-right"></i>
+                </button>
                 <p class="summary-note"><i class="fa-solid fa-circle-info"></i> Configurația va fi confirmată împreună cu echipa Elyan.</p>
             </aside>
         </section>
     </main>
 
+    <div id="card-modal" class="card-modal" aria-hidden="true">
+        <div class="card-modal__backdrop" data-close-modal></div>
+        <section class="card-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="digital-card-title">
+            <button class="modal-close" type="button" data-close-modal aria-label="Închide"><i class="fa-solid fa-xmark"></i></button>
+            <div class="digital-card" id="digital-card-preview">
+                <div class="digital-card__top"><i class="fa-solid fa-crown"></i><span>ELYAN ELIXIR 88</span><small>MEMBERSHIP</small></div>
+                <div class="digital-card__intro"><span>Abonamentul tău lunar</span><h2 id="digital-card-title">Experiențe alese pentru tine</h2></div>
+                <div id="digital-card-items" class="digital-card__items"></div>
+                <div class="digital-card__totals">
+                    <div><span>Total servicii</span><strong id="card-subtotal">0 Lei</strong></div>
+                    <div><span>Reducere Membership (15%)</span><strong id="card-discount">− 0 Lei</strong></div>
+                    <div class="digital-card__final"><span>Total de plată</span><strong id="card-total">0 Lei</strong></div>
+                </div>
+                <p>Relaxare · Sănătate · Frumusețe</p>
+            </div>
+            <div class="card-actions">
+                <button id="download-card" type="button"><i class="fa-solid fa-download"></i> Descarcă imaginea</button>
+                <a id="whatsapp-order" href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Trimite pe WhatsApp</a>
+            </div>
+        </section>
+    </div>
+
     <script src="services.js?v=20260908"></script>
-    <script src="membership.js?v=20260908"></script>
+    <script src="membership.js?v=20260908b"></script>
 </body>
 </html>

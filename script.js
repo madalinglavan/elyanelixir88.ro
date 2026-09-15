@@ -18,6 +18,10 @@ const mobileMenu = document.querySelector(".mobile-menu");
 const overlay = document.querySelector(".mobile-overlay");
 const navigationLinks = document.querySelectorAll(".nav-links a, .mobile-menu a");
 const sections = document.querySelectorAll("section");
+
+// Eliminăm complet din interfață vechile servicii Fitness care nu sunt oferite.
+document.querySelectorAll('#fitness .service-card[hidden][data-category="fitness"], a[hidden][href^="#fitness-"]').forEach(element=>element.remove());
+document.querySelectorAll('.nav-links li[hidden]').forEach(element=>element.remove());
 /*==================================================
 
     WINDOW LOAD
@@ -773,7 +777,7 @@ function renderOptions(card, data) {
     selector.innerHTML = `
         <div class="service-fixed-option">
             <i class="fa-solid fa-circle-check"></i>
-            <span>Serviciu complet</span>
+            <span>${data.options[0].label}</span>
         </div>
     `;
 
@@ -802,7 +806,14 @@ function updateSelection(
         ? `Durată: ${option.duration} minute`
         : null;
 
-    const messageLines = [
+    const messageLines = option.whatsappSubscription ? [
+        "Bună ziua!",
+        "Doresc să achiziționez abonamentul lunar Fitness Elyan Elixir 88.",
+        "Am înțeles că accesul la aparate este autonom și nu include antrenor personal.",
+        `Preț abonament: *${option.price} Lei/lună*`,
+        "Îmi puteți confirma disponibilitatea și detaliile pentru activare?",
+        "Mulțumesc!"
+    ] : [
         "Bună ziua!",
         "Doresc o programare pentru:",
         `*${data.title}*`,

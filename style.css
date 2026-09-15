@@ -4049,6 +4049,11 @@ button:focus-visible {
     body.menu-open .mobile-booking-bar { opacity:0; pointer-events:none; }
 }
 
+/* Fitness equipment utility cards */
+.equipment-icons>div{min-height:150px;display:grid;place-items:center;align-content:center;gap:7px;padding:14px;border:1px solid rgba(239,212,119,.22);border-radius:22px;background:rgba(255,255,255,.075);box-shadow:inset 0 1px rgba(255,255,255,.08);color:#efd477;text-align:center}.equipment-icons>div i{font-size:1.8rem}.equipment-icons>div strong{color:#fff;font-size:.76rem}.equipment-icons>div small{color:rgba(255,255,255,.68);font-size:.61rem;font-weight:500;line-height:1.4}@media(max-width:768px){.equipment-icons>div{min-height:112px;padding:10px;border-radius:16px}.equipment-icons>div small{font-size:.56rem}}
+
+.fitness-access-card{grid-template-columns:minmax(340px,.82fr) 1.18fr}.fitness-equipment-visual{min-height:620px;background:radial-gradient(circle at 50% 35%,rgba(212,175,55,.2),transparent 32%),linear-gradient(145deg,#0f6a4d,#032a20)}.fitness-equipment-visual::after{content:"MIȘCARE · MASAJ · RELAXARE";position:absolute;left:50%;bottom:112px;transform:translateX(-50%);width:100%;color:rgba(255,255,255,.34);font-size:.67rem;font-weight:700;letter-spacing:.22em;text-align:center}.equipment-icons{position:absolute;inset:50% 9% auto;display:grid;grid-template-columns:1fr 1fr;gap:14px;transform:translateY(-50%)}.equipment-icons span{min-height:130px;display:grid;place-items:center;align-content:center;gap:12px;border:1px solid rgba(239,212,119,.22);border-radius:22px;background:rgba(255,255,255,.075);box-shadow:inset 0 1px rgba(255,255,255,.08);color:#efd477}.equipment-icons i{font-size:2rem}.equipment-icons small{color:#fff;font-size:.72rem;font-weight:600}.fitness-access-card[hidden]{display:none!important}@media(max-width:768px){.fitness-access-card{grid-template-columns:1fr}.fitness-equipment-visual{height:330px;min-height:0}.equipment-icons{inset:48% 7% auto;gap:9px}.equipment-icons span{min-height:92px;border-radius:16px}.equipment-icons i{font-size:1.35rem}.fitness-equipment-visual::after{bottom:74px;font-size:.56rem}}
+
 /* FINAL MOBILE POLISH */
 @media (max-width:768px){
     .hero-services{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;width:min(100%,360px);margin:26px auto 34px}

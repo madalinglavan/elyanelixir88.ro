@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#0f6a4d">
+  <meta name="robots" content="noindex,nofollow">
+  <title>Dashboard Membership | Elyan Elixir 88</title>
+  <link rel="icon" href="images/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+  <link rel="stylesheet" href="dashboard.css?v=20260909">
+  <link rel="stylesheet" href="dashboard-details.css?v=20260915">
+  <link rel="stylesheet" href="dashboard-auth.css?v=20260915">
+</head>
+<body class="dashboard-locked">
+  <section id="login-screen" class="login-screen" aria-labelledby="login-title">
+    <div class="login-card">
+      <div class="login-brand"><img src="images/logo.png" alt="Elyan Elixir 88"><span>Acces administrativ</span></div>
+      <div class="login-heading"><span>Dashboard privat</span><h1 id="login-title">Bine ai revenit.</h1><p>Autentifică-te pentru a vedea cardurile Membership.</p></div>
+      <form id="dashboard-login" autocomplete="on">
+        <label for="dashboard-user"><span><i class="fa-regular fa-user"></i> Utilizator</span><input id="dashboard-user" name="username" type="text" autocomplete="username" required></label>
+        <label for="dashboard-password"><span><i class="fa-solid fa-lock"></i> Parolă</span><span class="password-field"><input id="dashboard-password" name="password" type="password" autocomplete="current-password" required><button id="toggle-password" type="button" aria-label="Arată parola"><i class="fa-regular fa-eye"></i></button></span></label>
+        <p id="login-message" class="login-message" role="alert" aria-live="polite"></p>
+        <button class="login-submit" type="submit"><span>Intră în dashboard</span><i class="fa-solid fa-arrow-right"></i></button>
+      </form>
+      <p class="login-security"><i class="fa-solid fa-shield-halved"></i> Sesiunea rămâne activă numai în această filă.</p>
+    </div>
+  </section>
+  <header class="topbar">
+    <a class="brand" href="index.html"><img src="images/logo.png" alt="Elyan Elixir 88"></a>
+    <div class="topbar__title"><span>Administrare</span><strong>Membership Dashboard</strong></div>
+    <div class="topbar__actions"><a class="topbar__action" href="membership.html"><i class="fa-solid fa-plus"></i><span>Abonament nou</span></a><button id="dashboard-logout" class="topbar__logout" type="button" title="Deconectare"><i class="fa-solid fa-arrow-right-from-bracket"></i><span>Ieșire</span></button></div>
+  </header>
+  <main>
+    <section class="welcome">
+      <div><span class="eyebrow">Privire de ansamblu</span><h1>Bun venit în dashboard.</h1><p>Cardurile sunt înregistrate automat când sunt descărcate pentru tipărire.</p></div>
+      <div class="today"><i class="fa-regular fa-calendar"></i><span id="today-label"></span></div>
+    </section>
+    <section class="stats" aria-label="Statistici Membership">
+      <article><span class="stat-icon"><i class="fa-regular fa-id-card"></i></span><div><small>Carduri tipărite</small><strong id="stat-cards">0</strong><span id="stat-month-cards">0 luna aceasta</span></div></article>
+      <article><span class="stat-icon gold"><i class="fa-solid fa-layer-group"></i></span><div><small>Ședințe incluse</small><strong id="stat-sessions">0</strong><span>în toate cardurile</span></div></article>
+      <article><span class="stat-icon"><i class="fa-solid fa-wallet"></i></span><div><small>Valoare abonamente</small><strong id="stat-value">0 Lei</strong><span>după reducerea de 15%</span></div></article>
+      <article><span class="stat-icon gold"><i class="fa-solid fa-piggy-bank"></i></span><div><small>Reduceri acordate</small><strong id="stat-discounts">0 Lei</strong><span>beneficii Membership</span></div></article>
+    </section>
+    <section class="history">
+      <div class="history__head"><div><span>Registru digital</span><h2>Carduri recente</h2></div><label><i class="fa-solid fa-magnifying-glass"></i><input id="search-cards" type="search" placeholder="Caută după nume sau lună" aria-label="Caută în carduri"></label></div>
+      <div class="table-wrap">
+        <table><thead><tr><th>Client</th><th>Perioada de valabilitate</th><th>Servicii</th><th>Ședințe</th><th>Total</th><th>Înregistrat</th></tr></thead><tbody id="card-history"></tbody></table>
+        <div id="empty-dashboard" class="empty-dashboard"><i class="fa-regular fa-id-card"></i><h3>Primul card va apărea aici</h3><p>Descarcă un card din configurator pentru a începe istoricul.</p><a href="membership.html">Deschide configuratorul <i class="fa-solid fa-arrow-right"></i></a></div>
+      </div>
+      <p class="storage-note"><i class="fa-solid fa-shield-halved"></i> Datele sunt păstrate doar în acest browser, pe acest dispozitiv.</p>
+    </section>
+  </main>
+  <script src="dashboard-auth.js?v=20260915"></script>
+  <script src="dashboard.js?v=20260915b"></script>
+</body>
+</html>

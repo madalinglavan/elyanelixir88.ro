@@ -173,7 +173,31 @@ window.services = {
 
     fitness: {
 
+        access: {
+
+            title: "Abonament lunar Fitness",
+
+            options: [
+
+                {
+                    label: "Acces o lună de la activare",
+                    price: 60,
+                    unit: "abonament",
+                    maxQuantity: 1,
+                    fixedMonthly: true,
+                    discountable: false,
+                    qualifiesForMembership: false,
+                    whatsappSubscription: true,
+                    recommended: true
+                }
+
+            ]
+
+        },
+
         antrenament: {
+
+            hidden: true,
 
             title: "Antrenament Personalizat",
 
@@ -205,6 +229,8 @@ window.services = {
 
         tonifiere: {
 
+            hidden: true,
+
             title: "Tonifiere Corporală",
 
             options: [
@@ -228,6 +254,8 @@ window.services = {
         },
 
         functional: {
+
+            hidden: true,
 
             title: "Functional Training",
 
@@ -253,6 +281,8 @@ window.services = {
 
         stretching: {
 
+            hidden: true,
+
             title: "Stretching & Mobilitate",
 
             options: [
@@ -277,6 +307,8 @@ window.services = {
 
         cardio: {
 
+            hidden: true,
+
             title: "Cardio & Rezistență",
 
             options: [
@@ -300,6 +332,8 @@ window.services = {
         },
 
         signature: {
+
+            hidden: true,
 
             title: "Wellness Signature Experience",
 

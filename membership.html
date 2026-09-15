@@ -13,7 +13,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="membership.css?v=20260908b">
     <link rel="stylesheet" href="membership-card.css?v=20260908">
-    <link rel="stylesheet" href="membership-form.css?v=20260908b">
+    <link rel="stylesheet" href="membership-form.css?v=20260915">
+    <link rel="stylesheet" href="membership-compact.css?v=20260915">
 </head>
 <body>
     <header class="membership-header">
@@ -27,7 +28,7 @@
             <div>
                 <span class="eyebrow">Elyan Membership</span>
                 <h1>Construiește abonamentul potrivit pentru tine.</h1>
-                <p>Alege minimum 3 ședințe în fiecare lună, din același serviciu sau din servicii diferite. Reducerea de 15% este aplicată automat întregului abonament.</p>
+                <p>Alege minimum 3 ședințe pentru serviciile cu reducere sau bifează abonamentul Fitness la prețul fix de 60 Lei/lună.</p>
             </div>
             <div class="intro-badge"><i class="fa-solid fa-gem"></i><span><small>Beneficiu inclus</small>15% reducere lunară</span></div>
         </section>
@@ -47,7 +48,7 @@
                     <div class="member-form__heading"><span>Personalizează cardul</span><small>Ambele câmpuri sunt obligatorii</small></div>
                     <div class="member-form__grid">
                         <label for="client-name"><span><i class="fa-regular fa-user"></i> Numele clientului</span><input id="client-name" type="text" maxlength="60" autocomplete="name" placeholder="Ex: Maria Popescu" required></label>
-                        <label for="membership-month"><span><i class="fa-regular fa-calendar"></i> Luna serviciilor</span><input id="membership-month" type="month" required></label>
+                        <label for="membership-month"><span><i class="fa-regular fa-calendar"></i> Data activării</span><input id="membership-month" type="date" required></label>
                     </div>
                     <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
                 </div>
@@ -75,7 +76,7 @@
                 <div class="digital-card__intro"><span>Abonamentul tău lunar</span><h2 id="digital-card-title">Experiențe alese pentru tine</h2></div>
                 <div class="digital-card__identity">
                     <div><small>Pregătit pentru</small><strong id="card-client-name">—</strong></div>
-                    <div><small>Luna abonamentului</small><strong id="card-month">—</strong></div>
+                    <div><small>Valabilitate</small><strong id="card-month">—</strong></div>
                 </div>
                 <div id="digital-card-items" class="digital-card__items"></div>
                 <div class="digital-card__totals">
@@ -92,7 +93,7 @@
         </section>
     </div>
 
-    <script src="services.js?v=20260908"></script>
-    <script src="membership.js?v=20260908d"></script>
+    <script src="services.js?v=20260915b"></script>
+    <script src="membership.js?v=20260915d"></script>
 </body>
 </html>

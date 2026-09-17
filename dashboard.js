@@ -22,7 +22,7 @@ function renderCards(query=""){
   const tbody=document.querySelector("#card-history"),empty=document.querySelector("#empty-dashboard");
   tbody.innerHTML=filtered.map(card=>{
     const tags=(card.items||[]).map(item=>{const detail=item.detail||"Serviciu selectat",quantity=Number(item.quantity)||1;return `<span><strong>${escapeHtml(item.title)}</strong><small>${escapeHtml(detail)} × ${quantity}</small></span>`}).join("");
-    return `<tr><td><strong>${escapeHtml(card.clientName)}</strong><small>Card Membership</small></td><td><strong>${escapeHtml(card.validityLabel||card.monthLabel)}</strong></td><td><div class="service-tags">${tags}</div></td><td><strong>${Number(card.sessionCount)||0}</strong></td><td class="total-cell">${money(card.total)}</td><td>${dateLabel(card.createdAt)}</td></tr>`;
+    return `<tr><td data-label="Client"><strong>${escapeHtml(card.clientName)}</strong><small>Card Membership</small></td><td data-label="Valabilitate"><strong>${escapeHtml(card.validityLabel||card.monthLabel)}</strong></td><td data-label="Servicii"><div class="service-tags">${tags}</div></td><td data-label="Ședințe"><strong>${Number(card.sessionCount)||0}</strong></td><td data-label="Total" class="total-cell">${money(card.total)}</td><td data-label="Înregistrat">${dateLabel(card.createdAt)}</td></tr>`;
   }).join("");
   empty.classList.toggle("is-visible",filtered.length===0);
   document.querySelector("table").style.display=filtered.length?"table":"none";

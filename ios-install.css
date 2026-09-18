@@ -1,0 +1,17 @@
+/* Native dialog uses the top layer, above the menu and fixed navigation. */
+.ios-install-dialog{box-sizing:border-box;width:min(92vw,440px);max-height:85vh;max-height:85dvh;overflow:auto;margin:auto;padding:28px;border:1px solid #d4af3766;border-radius:26px;background:#f8fbf7;color:#123d2f;box-shadow:0 24px 80px #0005;font-family:Poppins,sans-serif;text-align:left;overscroll-behavior:contain}
+.ios-install-dialog::backdrop{background:#032a20cc;backdrop-filter:blur(8px)}
+.ios-install-close{position:absolute;right:14px;top:14px;display:grid;place-items:center;width:40px;height:40px;padding:0;border:1px solid #dce7df;border-radius:12px;background:#edf4ef;color:#073b2d;font:500 27px/1 Poppins,sans-serif;cursor:pointer}
+.ios-install-icon{display:grid;place-items:center;width:52px;height:52px;margin-bottom:20px;border:1px solid #d4af3755;border-radius:16px;background:#073b2d;color:#efd477;font-size:25px}
+.ios-install-eyebrow{display:block;color:#856615;font-size:.62rem;font-weight:700;letter-spacing:.14em}
+.ios-install-dialog h2{margin:8px 0 12px;color:#073b2d;font:700 2.1rem/1.05 'Cormorant Garamond',serif}
+.ios-install-dialog p{margin:0 0 19px;color:#53685d;font-size:.82rem;line-height:1.65}
+.ios-install-dialog ol{display:grid;gap:15px;margin:0;padding-left:22px}
+.ios-install-dialog li{padding-left:5px;color:#0b6046;font-size:.8rem}
+.ios-install-dialog li::marker{font-weight:700;color:#856615}
+.ios-install-dialog li strong{display:block;color:#123d2f;font-size:.8rem;line-height:1.5}
+.ios-install-dialog li span{display:block;margin-top:4px;color:#53685d;font-size:.73rem;line-height:1.6}
+.ios-install-done{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:46px;margin-top:24px;padding:12px;border:0;border-radius:13px;background:#073b2d;color:#fff;font:600 .8rem Poppins,sans-serif;cursor:pointer}
+.ios-install-dialog button:focus-visible{outline:3px solid #b58d20;outline-offset:3px}
+html:has(.ios-install-dialog[open]){overflow:hidden}
+@media(max-width:600px){.membership-header .app-install{position:static;grid-column:1/-1;justify-self:center;margin:0 0 10px;font-size:.65rem;padding:8px 14px}.membership-header:has(.app-install:not([hidden])){height:auto;min-height:72px;padding-top:8px;row-gap:3px}}

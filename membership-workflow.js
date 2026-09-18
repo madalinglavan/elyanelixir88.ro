@@ -29,7 +29,7 @@ const membershipWorkflow = (() => {
     event.stopImmediatePropagation();
     if (busy) return;
     if (!payment()) { status.textContent='Alege mai întâi metoda de plată, în formularul abonamentului.'; return; }
-    if (payment()!=='cash') { status.textContent='Plata online va fi disponibilă după conectarea Stripe. Nu s-a efectuat nicio plată.'; return; }
+    if (payment()!=='cash') { status.textContent='Plata online nu este încă disponibilă. Nu s-a efectuat nicio plată.'; return; }
     busy=true;
     let popup;
     try {
@@ -75,7 +75,7 @@ const membershipWorkflow = (() => {
             localStorage.setItem(key,JSON.stringify(read().filter(item=>item.id!==record.id)));
             throw error;
           }
-          status.textContent='Cardul și detaliile au fost predate meniului de partajare. Alege WhatsApp și salonul (0769 729 403), apoi confirmă trimiterea. Livrarea nu este confirmată automat; plata rămâne neachitată.';
+          status.textContent='Meniul de partajare a primit cardul și detaliile. Alege WhatsApp, apoi salonul (0769 729 403) și apasă „Trimite”. Așteaptă confirmarea salonului; livrarea și plata nu sunt confirmate automat.';
           return;
         }
         try { popup.location.href=url.href; } catch (error) {

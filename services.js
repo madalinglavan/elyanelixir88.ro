@@ -24,7 +24,7 @@ window.services = {
                     price: 89,
                     recommended: true,
                     badge: "Recomandat",
-                    description: "Cea mai aleasă experiență"
+                    description: "O ședință de 50 de minute pentru relaxare"
                 },
 
                 {
@@ -378,7 +378,7 @@ window.services = {
                     price: 149,
                     recommended: true,
                     badge: "Recomandat",
-                    description: "Prețul final depinde de complexitate"
+                    description: "Tarif de pornire; prețul se confirmă după evaluare"
                 }
 
             ]
@@ -396,7 +396,7 @@ window.services = {
                     duration: 30,
                     price: 99,
                     recommended: true,
-                    description: "Durata depinde de zona tratată"
+                    description: "Durata și tariful se confirmă în funcție de zona îngrijită"
                 }
 
             ]
@@ -414,7 +414,7 @@ window.services = {
                     duration: 30,
                     price: 99,
                     recommended: true,
-                    description: "Evaluarea stabilește procedura necesară"
+                    description: "Îngrijirea și tariful se confirmă după evaluare"
                 }
 
             ]
@@ -432,7 +432,7 @@ window.services = {
                     duration: 45,
                     price: 119,
                     recommended: true,
-                    description: "Prețul variază după complexitate"
+                    description: "Tarif de pornire, confirmat după evaluarea pielii"
                 }
 
             ]
@@ -529,7 +529,7 @@ window.services = {
                     duration: 30,
                     price: 69,
                     recommended: true,
-                    description: "Tratamentul este ales după evaluare"
+                    description: "Îngrijirea și tariful se stabilesc după evaluare"
                 }
 
             ]

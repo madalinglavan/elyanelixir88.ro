@@ -684,13 +684,13 @@ function initServiceCard(card) {
         detailsButton.type = "button";
         detailsButton.className = "service-details-toggle";
         detailsButton.setAttribute("aria-expanded", "false");
-        detailsButton.innerHTML = `<span>Descoperă experiența</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i>`;
+        detailsButton.innerHTML = `<span>Vezi detaliile serviciului</span><i class="fa-solid fa-chevron-down" aria-hidden="true"></i>`;
         firstBlock.before(detailsButton);
 
         detailsButton.addEventListener("click", () => {
             const isOpen = card.classList.toggle("details-open");
             detailsButton.setAttribute("aria-expanded", String(isOpen));
-            detailsButton.querySelector("span").textContent = isOpen ? "Ascunde detaliile" : "Descoperă experiența";
+            detailsButton.querySelector("span").textContent = isOpen ? "Ascunde detaliile" : "Vezi detaliile serviciului";
         });
     }
 
@@ -706,7 +706,7 @@ function renderOptions(card, data) {
 
     selector.innerHTML = "";
     selector.setAttribute("role", "group");
-    selector.setAttribute("aria-label", "Alege durata și tipul experienței");
+    selector.setAttribute("aria-label", "Alege durata și varianta serviciului");
     priceElement.setAttribute("aria-live", "polite");
 
     let defaultIndex =
@@ -817,10 +817,10 @@ function updateSelection(
         "Bună ziua!",
         "Doresc o programare pentru:",
         `*${data.title}*`,
-        `Experiență: *${option.label}*`,
+        `Variantă: *${option.label}*`,
         durationSection,
-        `Preț: *${option.price} Lei*`,
-        "Îmi puteți spune când aveți locuri disponibile?",
+        `${option.label === "De la" ? "Tarif de pornire" : "Preț"}: *${option.price} Lei*`,
+        "Vă rog să îmi confirmați disponibilitatea și tariful pentru programare.",
         "Mulțumesc!"
     ];
 

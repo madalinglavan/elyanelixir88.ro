@@ -24,6 +24,8 @@ body.elyan-app,body.app-dashboard{background:var(--atelier-paper);color:var(--at
 .app-salon .trust-ribbon{background:var(--atelier-paper);padding:22px 0;border-bottom:1px solid var(--atelier-line)}
 .app-salon .trust-ribbon__grid{gap:12px}.app-salon .trust-ribbon__grid>div,.app-salon .trust-ribbon__grid>a{border:0;background:transparent;border-radius:0;box-shadow:none;min-height:70px;padding:12px}
 .app-salon .trust-ribbon__grid i{border:0;background:#eeeadd;color:#176049}.app-salon .trust-ribbon__grid small{color:#637468}
+.app-salon .trust-ribbon,.app-salon .trust-ribbon__grid>a,.app-salon .trust-ribbon__grid>div,.app-salon .trust-ribbon__grid span{color:#123e31}
+.app-salon .trust-ribbon__grid small{color:#526458}
 .atelier-discover{padding:66px 0 60px;background:var(--atelier-paper)}
 .atelier-heading{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:26px}.atelier-eyebrow{font:600 .65rem/1.5 Poppins,sans-serif;letter-spacing:.16em;text-transform:uppercase;color:#79622c}
 .atelier-heading h2{font:600 clamp(1.9rem,3vw,2.7rem)/1.12 'Cormorant Garamond',serif;color:#123e31;margin:10px 0 0;text-wrap:balance}.atelier-heading>p{font-size:.8rem;line-height:1.7;color:#596b61;max-width:310px;margin:0}
@@ -77,4 +79,6 @@ body.elyan-app,body.app-dashboard{background:var(--atelier-paper);color:var(--at
  .app-dock{border-radius:20px;left:10px;right:10px;padding:6px;background:#093d30f5}.app-dock a{border-radius:13px;min-height:55px;color:#d0ded1}.app-dock a.is-active{background:#e6cc8314;color:#ead28b}
  .app-configurator .configurator-intro{padding:28px 0 20px}.app-configurator .configurator-intro h1{font-size:2.05rem;line-height:1.13}.app-configurator .configurator-intro p{font-size:.76rem}.atelier-steps{gap:12px;margin-bottom:20px;font-size:.62rem}.atelier-steps b{width:22px;height:22px;min-width:22px}.app-configurator .catalog{padding:15px}.app-configurator .category-button{padding:15px 12px;min-height:78px}.app-configurator .category-button strong{font-size:1.2rem}.app-configurator .category-button small{font-size:.61rem}.app-configurator .summary{padding:21px}.app-configurator .catalog-heading h2,.app-configurator .summary h2{font-size:1.8rem}.app-configurator .app-checkout-peek{border-radius:13px;background:#fffdf6;border-color:#d6c897}.app-configurator .card-modal__dialog{border-radius:18px;max-height:92dvh}.app-dashboard .stats{gap:12px}.app-dashboard .stats article{padding:18px}.app-dashboard .login-heading h1{font-size:2.5rem}.app-dashboard .service-tags{grid-template-columns:1fr!important}
 }
+/* Legacy fixed-height ornaments must never cross service headings. */
+.app-salon #massage::before,.app-salon #fitness::before,.app-salon #pedichiura::before,.app-salon #nails::before{content:none!important;display:none!important}
 @media(prefers-reduced-motion:reduce){.atelier-button,.atelier-discover-card{transition:none}.atelier-button:hover,.atelier-discover-card:hover{transform:none}}

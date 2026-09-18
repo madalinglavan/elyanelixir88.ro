@@ -37,7 +37,7 @@
     <link rel="stylesheet" href="mobile-app.css?v=20260917">
     <link rel="stylesheet" href="visual-polish.css?v=20260918seo">
     <link rel="stylesheet" href="ios-install.css?v=20260918">
-    <link rel="stylesheet" href="atelier.css?v=20260918">
+    <link rel="stylesheet" href="atelier.css?v=20260918titles">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="apple-touch-icon" href="images/apple-touch-icon-green.png">
     <meta name="apple-mobile-web-app-capable" content="yes">
@@ -53,18 +53,18 @@
         <section class="configurator-intro">
             <div>
                 <span class="eyebrow">Elyan Membership</span>
-                <h1>Un abonament. Exact cum îți dorești.</h1>
-                <p>Alege minimum 3 ședințe pentru serviciile cu reducere sau bifează abonamentul Fitness la prețul fix de 60 Lei/lună.</p>
+                <h1>Îngrijirea ta. Abonamentul ales de tine.</h1>
+                <p>Combină minimum 3 ședințe eligibile și primești 15% reducere. Poți alege și Fitness, separat sau alături de ele, la prețul fix de 60 Lei/lună, fără reducere.</p>
             </div>
             <div class="intro-badge"><i class="fa-solid fa-gem"></i><span><small>Minimum 3 ședințe eligibile</small>Economisești 15%</span></div>
         </section>
-        <ol class="atelier-steps" aria-label="Pașii configurării"><li><b>1</b> Alege serviciile</li><li><b>2</b> Nume și activare</li><li><b>3</b> Creează cardul</li></ol>
+        <ol class="atelier-steps" aria-label="Pașii configurării"><li><b>1</b> Alege serviciile</li><li><b>2</b> Completează datele</li><li><b>3</b> Creează cardul</li></ol>
 
         <section class="configurator-shell" aria-label="Configurator abonament">
             <div class="catalog">
                 <div class="catalog-heading">
-                    <div><span>Pasul 1</span><h2>Alege experiențele</h2></div>
-                    <p>Poți combina orice servicii.</p>
+                    <div><span>Pasul 1</span><h2>Alege serviciile tale</h2></div>
+                    <p>Deschide o categorie și alege numărul de ședințe.</p>
                 </div>
                 <div id="service-catalog"></div>
             </div>
@@ -72,30 +72,30 @@
             <aside class="summary" aria-labelledby="summary-title">
                 <div class="summary-head"><span>Pasul 2</span><h2 id="summary-title">Abonamentul tău</h2><p>O lună completă de la data activării</p></div>
                 <div class="member-form">
-                    <div class="member-form__heading"><span>Personalizează cardul</span><small>Ambele câmpuri sunt obligatorii</small></div>
+                    <div class="member-form__heading"><span>Personalizează cardul</span><small>Numele și data sunt obligatorii</small></div>
                     <div class="member-form__grid">
                         <label for="client-name"><span><i class="fa-regular fa-user"></i> Numele clientului</span><input id="client-name" type="text" maxlength="60" autocomplete="name" placeholder="Ex: Maria Popescu" required></label>
                         <label for="membership-month"><span><i class="fa-regular fa-calendar"></i> Data activării</span><input id="membership-month" type="date" required></label>
                     </div>
                     <p id="form-message" class="form-message" role="status" aria-live="polite"></p>
                 </div>
-                <div id="summary-items" class="summary-items"><div class="empty-state"><i class="fa-regular fa-heart"></i><p>Serviciile selectate vor apărea aici.</p></div></div>
+                <div id="summary-items" class="summary-items"><div class="empty-state"><i class="fa-regular fa-heart"></i><p>Alege serviciile și urmărește aici selecția și prețul.</p></div></div>
                 <div class="calculation">
                     <div><span>Total servicii</span><strong id="subtotal">0 Lei</strong></div>
                     <div class="discount"><span>Reducere Membership <em>−15%</em></span><strong id="discount">− 0 Lei</strong></div>
                     <div class="final-total"><span>Total de plată</span><strong id="total">0 Lei</strong></div>
                 </div>
-                <p id="eligibility-message" class="eligibility-message"><i class="fa-solid fa-lock"></i><span>Mai adaugă 3 ședințe pentru a activa abonamentul.</span></p>
+                <p id="eligibility-message" class="eligibility-message"><i class="fa-solid fa-lock"></i><span>Alege minimum 3 ședințe eligibile pentru reducere sau abonamentul Fitness separat.</span></p>
                 <fieldset class="payment-choice" style="border:1px solid #cadbd0;border-radius:16px;padding:16px;margin:16px 0;color:#073b2d">
                     <legend>Cum dorești să achiți?</legend>
                     <label style="display:block;padding:10px 0"><input type="radio" name="payment-method" value="cash" required> Cash la recepție</label>
-                    <label style="display:block;padding:10px 0;color:#53685d"><input type="radio" name="payment-method" value="card" disabled> Card online — disponibil după conectarea Stripe</label>
-                    <small>Alegerea este obligatorie înainte de solicitare. Cardul digital nu reprezintă dovada plății sau confirmarea rezervării.</small>
+                    <label style="display:block;padding:10px 0;color:#53685d"><input type="radio" name="payment-method" value="card" disabled> Card online — momentan indisponibil</label>
+                    <small>Selectează metoda de plată înainte de a crea cardul. Plata și programările se confirmă separat cu salonul; cardul digital nu este dovadă de plată.</small>
                 </fieldset>
                 <button id="generate-card" class="order-button is-disabled" type="button" disabled>
-                    <i class="fa-solid fa-wand-magic-sparkles"></i><span>Generează cardul digital</span><i class="fa-solid fa-arrow-right"></i>
+                    <i class="fa-solid fa-wand-magic-sparkles"></i><span>Creează cardul digital</span><i class="fa-solid fa-arrow-right"></i>
                 </button>
-                <p class="summary-note"><i class="fa-solid fa-circle-info"></i> Configurația va fi confirmată împreună cu echipa Elyan.</p>
+                <p class="summary-note"><i class="fa-solid fa-circle-info"></i> Salonul confirmă solicitarea și tarifele „de la” după evaluare.</p>
             </aside>
         </section>
     </main>
@@ -106,7 +106,7 @@
             <button class="modal-close" type="button" data-close-modal aria-label="Închide"><i class="fa-solid fa-xmark"></i></button>
             <div class="digital-card" id="digital-card-preview">
                 <div class="digital-card__top"><i class="fa-solid fa-crown"></i><span>ELYAN ELIXIR 88</span><small>MEMBERSHIP</small></div>
-                <div class="digital-card__intro"><span>Abonamentul tău lunar</span><h2 id="digital-card-title">Experiențe alese pentru tine</h2></div>
+                <div class="digital-card__intro"><span>Abonamentul tău lunar</span><h2 id="digital-card-title">Serviciile alese de tine</h2></div>
                 <div class="digital-card__identity">
                     <div><small>Pregătit pentru</small><strong id="card-client-name">—</strong></div>
                     <div><small>Valabilitate</small><strong id="card-month">—</strong></div>
@@ -120,32 +120,32 @@
                 <p id="card-payment">Alege metoda de plată înainte de solicitare.</p>
                 <section class="payment-validation" aria-label="Confirmare manuală a achitării, de completat de salon">
                     <h3>Confirmarea achitării</h3>
-                    <small>Se completează de salon numai după încasarea plății.</small>
+                    <small>Salonul completează acest spațiu numai după încasarea plății.</small>
                     <div class="payment-validation__fields">
                         <div class="payment-validation__stamp"><span>Ștampila salonului</span></div>
                         <div class="payment-validation__signature"><span>Semnătură</span><div></div><span>Data achitării</span><div></div></div>
                     </div>
                 </section>
-                <p>Configurație propusă · se confirmă de salon · nu este dovadă de plată</p>
+                <p>Solicitare de abonament · confirmare de la salon necesară · nu este dovadă de plată</p>
             </div>
             <div class="card-actions">
                 <button id="print-card-menu" type="button" aria-expanded="false" aria-controls="print-card-options"><i class="fa-solid fa-print"></i> Tipărește</button>
             </div>
             <div id="print-card-options" hidden>
-                <h3>Ce dorești să faci cu cardul?</h3>
+                <h3>Trimite solicitarea sau păstrează cardul</h3>
                 <div class="card-actions">
                     <a id="whatsapp-order" href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Trimite pe WhatsApp salonului</a>
                     <button id="download-card" type="button"><i class="fa-solid fa-download"></i> Salvează cardul</button>
                 </div>
-                <p>La trimitere, alege WhatsApp și salonul Elyan Elixir 88 — 0769 729 403. Dacă browserul nu permite partajarea imaginii, salvează cardul și atașează-l manual în conversație. Salvarea nu înregistrează abonamentul în dashboard.</p>
+                <p>Pentru solicitare, alege WhatsApp și conversația salonului Elyan Elixir 88 — 0769 729 403, apoi apasă „Trimite”. Dacă imaginea nu poate fi partajată, salveaz-o și atașeaz-o manual. Salvarea cardului nu trimite o solicitare salonului.</p>
             </div>
             <p id="submission-status" role="status" aria-live="polite" style="padding:16px;color:#073b2d;font-size:.8rem;line-height:1.7"></p>
         </section>
     </div>
 
-    <script src="services.js?v=20260915b"></script>
-    <script src="membership.js?v=20260918share"></script>
-    <script src="membership-workflow.js?v=20260918print"></script>
+    <script src="services.js?v=20260918copy"></script>
+    <script src="membership.js?v=20260918copy"></script>
+    <script src="membership-workflow.js?v=20260918copy"></script>
     <script src="membership-print-menu.js?v=20260918"></script>
     <script src="atelier.js?v=20260918"></script>
     <script src="mobile-app.js?v=20260918atelier"></script>

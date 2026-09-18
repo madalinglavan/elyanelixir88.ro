@@ -3,7 +3,7 @@
   const isConfigurator=Boolean(document.querySelector('#service-catalog'));
   document.body.classList.add('elyan-app',isConfigurator?'app-configurator':'app-salon');
   const home=isConfigurator?'index.html#home':'#home';
-  const services=isConfigurator?'index.html#massage':'#massage';
+  const services=isConfigurator?'index.html#experiente':'#experiente';
   const contact=isConfigurator?'index.html#contact':'#contact';
   const dock=document.createElement('nav');dock.className='app-dock';dock.setAttribute('aria-label','Navigare principală');
   dock.innerHTML=`<a href="${home}" data-tab="home"><i class="fa-solid fa-house"></i><span>Acasă</span></a><a href="${services}" data-tab="services"><i class="fa-solid fa-spa"></i><span>Servicii</span></a><a href="membership.html" data-tab="membership" class="${isConfigurator?'is-active':''}"><i class="fa-solid fa-crown"></i><span>Abonament</span></a><a href="${contact}" data-tab="contact"><i class="fa-regular fa-comment-dots"></i><span>Contact</span></a>`;
@@ -15,7 +15,7 @@
     activateCategory(categoryForHash(location.hash)||'massage');
     document.addEventListener('click',event=>{const anchor=event.target.closest('a[href^="#"]');if(!anchor)return;const id=categoryForHash(anchor.hash);if(id)activateCategory(id)},true);
     window.addEventListener('hashchange',()=>{const id=categoryForHash(location.hash);if(id)activateCategory(id)});
-    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const tab=entry.target.id==='contact'?'contact':categories.some(category=>category.id===entry.target.id)?'services':entry.target.id==='membership'?'membership':'home';dock.querySelectorAll('a').forEach(link=>{const active=link.dataset.tab===tab;link.classList.toggle('is-active',active);if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current')})})},{rootMargin:'-15% 0px -65% 0px'});['home','membership','contact',...categories.map(category=>category.id)].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el)});
+    const observer=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(!entry.isIntersecting)return;const tab=entry.target.id==='contact'?'contact':entry.target.id==='experiente'||categories.some(category=>category.id===entry.target.id)?'services':entry.target.id==='membership'?'membership':'home';dock.querySelectorAll('a').forEach(link=>{const active=link.dataset.tab===tab;link.classList.toggle('is-active',active);if(active)link.setAttribute('aria-current','page');else link.removeAttribute('aria-current')})})},{rootMargin:'-15% 0px -65% 0px'});['home','experiente','membership','contact',...categories.map(category=>category.id)].forEach(id=>{const el=document.getElementById(id);if(el)observer.observe(el)});
   }else{
     const peek=document.createElement('button');peek.type='button';peek.className='app-checkout-peek';peek.innerHTML='<span><small>Abonamentul tău</small><strong>0 Lei</strong></span><span>Vezi selecția <i class="fa-solid fa-arrow-up"></i></span>';peek.addEventListener('click',()=>document.querySelector('.summary').scrollIntoView({behavior:'smooth',block:'start'}));document.body.append(peek);const total=document.getElementById('total');new MutationObserver(()=>peek.querySelector('strong').textContent=total.textContent).observe(total,{childList:true,subtree:true});
   }

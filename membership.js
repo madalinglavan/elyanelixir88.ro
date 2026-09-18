@@ -60,13 +60,14 @@ function updateSummary(){
   const remainingSessions=Math.max(0,3-qualifyingCount),canGenerate=hasFixedMembership||qualifyingCount>=3;
   eligibilityMessage.classList.toggle("is-ready",canGenerate);
   eligibilityMessage.innerHTML=hasFixedMembership&&qualifyingCount<3?`<i class="fa-solid fa-circle-check"></i><span>Abonamentul Fitness este eligibil la prețul fix de 60 Lei/lună.</span>`:remainingSessions?`<i class="fa-solid fa-lock"></i><span>Mai adaugă ${remainingSessions} ${remainingSessions===1?"ședință":"ședințe"} pentru a activa reducerea Membership.</span>`:`<i class="fa-solid fa-circle-check"></i><span>Abonament eligibil — reducerea de 15% este activă pentru serviciile selectate.</span>`;
-  const clientName=clientNameInput.value.trim(),validity=calculateValidity(monthInput.value),month=validity?.label||"",isComplete=canGenerate&&clientName&&month;
+  const clientName=clientNameInput.value.trim(),validity=calculateValidity(monthInput.value),month=validity?.label||"",isComplete=canGenerate&&clientName&&month&&document.querySelector('input[name="payment-method"]:checked');
   if(!isComplete){generateButton.classList.add("is-disabled");generateButton.disabled=true;orderButton.href="#";return}
   const lines=["Bună ziua! Doresc abonamentul Elyan Membership:","",`Client: ${clientName}`,`Valabilitate: ${month}`,"",...items.map(item=>`• ${item.title} — ${item.detail} × ${item.quantity}: ${money(item.price*item.quantity)}`),"",`Total servicii: ${money(subtotal)}`,`Reducere Membership (15%): − ${money(discount)}`,`TOTAL DE PLATĂ: ${money(total)}`,"","Îmi puteți confirma disponibilitatea?"];
   orderButton.href="https://wa.me/40769729403?text="+encodeURIComponent(lines.join("\n"));generateButton.classList.remove("is-disabled");generateButton.disabled=false;formMessage.classList.remove("is-visible");formMessage.textContent="";
 }
 
 [clientNameInput,monthInput].forEach(input=>input.addEventListener("input",updateSummary));
+document.querySelectorAll('input[name="payment-method"]').forEach(input=>input.addEventListener('change',updateSummary));
 
 generateButton.addEventListener("click",()=>{
   const items=[...selections.values()],sessionCount=items.reduce((sum,item)=>sum+item.quantity,0),qualifyingCount=items.filter(item=>item.qualifiesForMembership!==false).reduce((sum,item)=>sum+item.quantity,0),hasFixedMembership=items.some(item=>item.fixedMonthly),clientName=clientNameInput.value.trim(),validity=calculateValidity(monthInput.value),month=validity?.label||"";
@@ -75,6 +76,7 @@ generateButton.addEventListener("click",()=>{
   document.querySelector("#digital-card-items").innerHTML=items.map(item=>`<div class="digital-card__item"><div><strong>${item.title}</strong><span>${item.detail} × ${item.quantity} ${itemUnit(item)}/lună</span></div><b>${money(item.price*item.quantity)}</b></div>`).join("");
   document.querySelector("#card-subtotal").textContent=money(subtotal);document.querySelector("#card-discount").textContent="− "+money(discount);document.querySelector("#card-total").textContent=money(total);
   document.querySelector("#card-client-name").textContent=clientName;document.querySelector("#card-month").textContent=month;
+  document.querySelector('#card-payment').textContent='Plată: cash la recepție · neachitat';
   modal.classList.add("is-open");modal.setAttribute("aria-hidden","false");document.body.classList.add("modal-open");modal.querySelector(".modal-close").focus();
 });
 
@@ -82,10 +84,10 @@ function closeModal(){modal.classList.remove("is-open");modal.setAttribute("aria
 modal.querySelectorAll("[data-close-modal]").forEach(el=>el.addEventListener("click",closeModal));
 document.addEventListener("keydown",event=>{if(event.key==="Escape"&&modal.classList.contains("is-open"))closeModal()});
 
-document.querySelector("#download-card").addEventListener("click",()=>{
+function createMembershipCardImage(){
   const items=[...selections.values()],sessionCount=items.reduce((sum,item)=>sum+item.quantity,0),qualifyingCount=items.filter(item=>item.qualifiesForMembership!==false).reduce((sum,item)=>sum+item.quantity,0),hasFixedMembership=items.some(item=>item.fixedMonthly),clientName=clientNameInput.value.trim(),validity=calculateValidity(monthInput.value),month=validity?.label||"";if((!hasFixedMembership&&qualifyingCount<3)||!clientName||!month)return;
   const subtotal=items.reduce((sum,item)=>sum+item.price*item.quantity,0),discountableSubtotal=items.filter(item=>item.discountable!==false).reduce((sum,item)=>sum+item.price*item.quantity,0),discount=qualifyingCount>=3?discountableSubtotal*.15:0,total=subtotal-discount;
-  const canvas=document.createElement("canvas"),width=1080,rowHeight=88,height=630+items.length*rowHeight;canvas.width=width;canvas.height=height;
+  const canvas=document.createElement("canvas"),width=1080,rowHeight=88,height=930+items.length*rowHeight;canvas.width=width;canvas.height=height;
   const ctx=canvas.getContext("2d"),gradient=ctx.createLinearGradient(0,0,width,height);gradient.addColorStop(0,"#0f6a4d");gradient.addColorStop(1,"#032a20");ctx.fillStyle=gradient;ctx.fillRect(0,0,width,height);
   ctx.strokeStyle="rgba(212,175,55,.55)";ctx.lineWidth=3;ctx.strokeRect(34,34,width-68,height-68);
   ctx.fillStyle="#efd477";ctx.font="700 30px Georgia";ctx.fillText("ELYAN ELIXIR 88",76,105);ctx.font="600 18px Arial";ctx.fillText("MEMBERSHIP  •  ABONAMENT LUNAR",76,140);
@@ -94,9 +96,21 @@ document.querySelector("#download-card").addEventListener("click",()=>{
   let y=402;items.forEach(item=>{ctx.fillStyle="rgba(255,255,255,.075)";ctx.fillRect(68,y-38,width-136,70);ctx.fillStyle="#fff";ctx.font="600 21px Arial";ctx.fillText(item.title.slice(0,52),88,y-8);ctx.fillStyle="rgba(255,255,255,.62)";ctx.font="17px Arial";ctx.fillText(`${item.detail} × ${item.quantity} ${itemUnit(item)}/lună`,88,y+19);ctx.fillStyle="#efd477";ctx.font="700 21px Arial";ctx.textAlign="right";ctx.fillText(money(item.price*item.quantity),width-88,y+3);ctx.textAlign="left";y+=rowHeight});
   y+=12;ctx.strokeStyle="rgba(255,255,255,.2)";ctx.beginPath();ctx.moveTo(76,y);ctx.lineTo(width-76,y);ctx.stroke();
   ctx.fillStyle="rgba(255,255,255,.72)";ctx.font="20px Arial";ctx.fillText("Total servicii",76,y+48);ctx.textAlign="right";ctx.fillText(money(subtotal),width-76,y+48);ctx.fillStyle="#efd477";ctx.fillText(`Reducere Membership (15%): − ${money(discount)}`,width-76,y+86);ctx.fillStyle="#fff";ctx.font="700 28px Arial";ctx.fillText("TOTAL DE PLATĂ",width-350,y+140);ctx.fillStyle="#efd477";ctx.font="700 42px Georgia";ctx.fillText(money(total),width-76,y+140);ctx.textAlign="left";
-  ctx.fillStyle="rgba(255,255,255,.45)";ctx.font="16px Arial";ctx.fillText("Relaxare  •  Sănătate  •  Frumusețe",76,height-72);
+  const validationY=y+185;
+  ctx.fillStyle='#fff';ctx.fillRect(76,validationY,width-152,210);
+  ctx.fillStyle='#123d2f';ctx.font='700 24px Arial';ctx.fillText('CONFIRMAREA ACHITĂRII',96,validationY+34);
+  ctx.fillStyle='#53685d';ctx.font='16px Arial';ctx.fillText('Se completează de salon numai după încasarea plății.',96,validationY+61);
+  ctx.strokeStyle='#a5b8ac';ctx.lineWidth=1;ctx.setLineDash([5,5]);ctx.strokeRect(96,validationY+78,116,116);ctx.setLineDash([]);
+  ctx.font='13px Arial';ctx.fillText('Ștampila salonului',102,validationY+99);
+  ctx.font='17px Arial';ctx.fillText('Semnătură',252,validationY+99);ctx.fillText('Data achitării',640,validationY+99);
+  ctx.beginPath();ctx.moveTo(252,validationY+172);ctx.lineTo(600,validationY+172);ctx.moveTo(640,validationY+172);ctx.lineTo(width-96,validationY+172);ctx.stroke();
+  ctx.fillStyle="rgba(255,255,255,.72)";ctx.font="16px Arial";ctx.fillText("Configurație propusă • Plata se confirmă de salon după încasare",76,height-72);
   const safeName=clientName.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
-  const cardRecord={id:`${Date.now()}-${Math.random().toString(36).slice(2,8)}`,clientName,startAt:validity.start.toISOString(),endAt:validity.end.toISOString(),validityLabel:month,month:monthInput.value.slice(0,7),monthLabel:month,createdAt:new Date().toISOString(),sessionCount,subtotal,discount,total,items:items.map(item=>({...item}))};
-  try{const history=JSON.parse(localStorage.getItem("elyanMembershipCards")||"[]");history.unshift(cardRecord);localStorage.setItem("elyanMembershipCards",JSON.stringify(history.slice(0,500)))}catch(error){console.warn("Cardul nu a putut fi înregistrat în dashboard.",error)}
-  const link=document.createElement("a");link.download=`elyan-membership-${safeName||"client"}-${monthInput.value.slice(0,10)}.png`;link.href=canvas.toDataURL("image/png",1);link.click();
+  // Downloading is not a submission or payment. Registration happens only
+  // through the duplicate-protected WhatsApp workflow.
+  return {filename:`elyan-membership-${safeName||"client"}-${monthInput.value.slice(0,10)}.png`,dataUrl:canvas.toDataURL('image/png',1)};
+}
+document.querySelector('#download-card').addEventListener('click',()=>{
+  const image=createMembershipCardImage();if(!image)return;
+  const link=document.createElement('a');link.download=image.filename;link.href=image.dataUrl;link.click();
 });

@@ -31,7 +31,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="membership.css?v=20260908b">
-    <link rel="stylesheet" href="membership-card.css?v=20260908">
+    <link rel="stylesheet" href="membership-card.css?v=20260918stamp">
     <link rel="stylesheet" href="membership-form.css?v=20260915">
     <link rel="stylesheet" href="membership-compact.css?v=20260915">
     <link rel="stylesheet" href="mobile-app.css?v=20260917">
@@ -84,6 +84,12 @@
                     <div class="final-total"><span>Total de plată</span><strong id="total">0 Lei</strong></div>
                 </div>
                 <p id="eligibility-message" class="eligibility-message"><i class="fa-solid fa-lock"></i><span>Mai adaugă 3 ședințe pentru a activa abonamentul.</span></p>
+                <fieldset class="payment-choice" style="border:1px solid #cadbd0;border-radius:16px;padding:16px;margin:16px 0;color:#073b2d">
+                    <legend>Cum dorești să achiți?</legend>
+                    <label style="display:block;padding:10px 0"><input type="radio" name="payment-method" value="cash" required> Cash la recepție</label>
+                    <label style="display:block;padding:10px 0;color:#53685d"><input type="radio" name="payment-method" value="card" disabled> Card online — disponibil după conectarea Stripe</label>
+                    <small>Alegerea este obligatorie înainte de solicitare. Cardul digital nu reprezintă dovada plății sau confirmarea rezervării.</small>
+                </fieldset>
                 <button id="generate-card" class="order-button is-disabled" type="button" disabled>
                     <i class="fa-solid fa-wand-magic-sparkles"></i><span>Generează cardul digital</span><i class="fa-solid fa-arrow-right"></i>
                 </button>
@@ -109,17 +115,31 @@
                     <div><span>Reducere Membership (15%)</span><strong id="card-discount">− 0 Lei</strong></div>
                     <div class="digital-card__final"><span>Total de plată</span><strong id="card-total">0 Lei</strong></div>
                 </div>
-                <p>Relaxare · Sănătate · Frumusețe</p>
+                <p id="card-payment">Alege metoda de plată înainte de solicitare.</p>
+                <section class="payment-validation" aria-label="Confirmare manuală a achitării, de completat de salon">
+                    <h3>Confirmarea achitării</h3>
+                    <small>Se completează de salon numai după încasarea plății.</small>
+                    <div class="payment-validation__fields">
+                        <div class="payment-validation__stamp"><span>Ștampila salonului</span></div>
+                        <div class="payment-validation__signature"><span>Semnătură</span><div></div><span>Data achitării</span><div></div></div>
+                    </div>
+                </section>
+                <p>Configurație propusă · se confirmă de salon · nu este dovadă de plată</p>
             </div>
             <div class="card-actions">
                 <button id="download-card" type="button"><i class="fa-solid fa-download"></i> Descarcă imaginea</button>
-                <a id="whatsapp-order" href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Trimite pe WhatsApp</a>
+                <a id="whatsapp-order" href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Solicită prin WhatsApp</a>
+                <button id="share-card-image" type="button"><i class="fa-solid fa-share-nodes"></i> Partajează cardul ca imagine</button>
             </div>
+            <p id="submission-status" role="status" aria-live="polite" style="padding:16px;color:#073b2d;font-size:.8rem;line-height:1.7">1. Solicită abonamentul prin WhatsApp și trimite mesajul. 2. Partajează cardul ca imagine, alege WhatsApp și conversația Elyan Elixir 88 (0769 729 403). Pe dispozitivele fără partajare de imagini, descarcă și atașează cardul manual.</p>
+            <p id="image-share-status" role="status" aria-live="polite" style="padding:0 16px 16px;color:#073b2d;font-size:.8rem;line-height:1.7"></p>
         </section>
     </div>
 
     <script src="services.js?v=20260915b"></script>
-    <script src="membership.js?v=20260918d"></script>
+    <script src="membership.js?v=20260918share"></script>
+    <script src="membership-workflow.js?v=20260918"></script>
+    <script src="membership-image-share.js?v=20260918"></script>
     <script src="mobile-app.js?v=20260918d"></script>
     <script src="navigation-loader.js?v=20260918"></script>
 </body>

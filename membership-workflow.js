@@ -35,14 +35,23 @@ const membershipWorkflow = (() => {
     try {
       // Reserve a window during the user gesture so browser popup blocking does
       // not interfere with the asynchronous, cross-tab critical section.
-      popup=window.open('about:blank','_blank');
-      if (!popup) throw new Error('Permite deschiderea WhatsApp în browser, apoi încearcă din nou.');
-      popup.opener=null;
-      const commit = () => {
+      let shareFile;
+      if(navigator.share && navigator.canShare && typeof createMembershipCardImage==='function'){
+        const image=createMembershipCardImage();
+        const bytes=Uint8Array.from(atob(image.dataUrl.split(',')[1]),char=>char.charCodeAt(0));
+        const file=new File([bytes],image.filename,{type:'image/png'});
+        if(navigator.canShare({files:[file]}))shareFile=file;
+      }
+      if(!shareFile){
+        popup=window.open('about:blank','_blank');
+        if (!popup) throw new Error('Permite deschiderea WhatsApp în browser, apoi încearcă din nou.');
+        popup.opener=null;
+      }
+      const commit = async () => {
         const record=snapshot(), records=read(), signature=fingerprint(record);
         const previous=records.find(item=>item.submissionStatus && (item.fingerprint || fingerprint(item))===signature);
         if (previous) {
-          popup.close();
+          popup?.close();
           status.textContent=`Această solicitare (${record.sessionCount} selecții, activare ${record.activationDate}) a fost deja inițiată pe ${new Date(previous.createdAt).toLocaleString('ro-RO')}. Nu o înregistrăm din nou. WhatsApp nu confirmă automat livrarea; verifică mesajul în conversație sau contactează salonul.`;
           return;
         }
@@ -52,15 +61,32 @@ const membershipWorkflow = (() => {
         if (url.hostname!=='wa.me') throw new Error('Solicitarea nu este pregătită. Generează din nou cardul.');
         url.searchParams.set('text',url.searchParams.get('text')+`\n\nReferință solicitare: ${record.id}\nMetodă de plată: cash la recepție\nStare plată: neachitat. Solicit confirmarea salonului.`);
         localStorage.setItem(key,JSON.stringify([record,...records]));
+        if(shareFile){
+          record.submissionStatus='share_pending';
+          localStorage.setItem(key,JSON.stringify([record,...records]));
+          try {
+            await navigator.share({files:[shareFile],title:'Card Elyan Membership',text:url.searchParams.get('text')});
+            record.submissionStatus='share_opened';
+            record.imageShareHandedOffAt=new Date().toISOString();
+            const latest=read();const index=latest.findIndex(item=>item.id===record.id);
+            if(index>=0){latest[index]=record;localStorage.setItem(key,JSON.stringify(latest));}
+          }catch(error){
+            // Remove only this failed/cancelled attempt, preserving other records.
+            localStorage.setItem(key,JSON.stringify(read().filter(item=>item.id!==record.id)));
+            throw error;
+          }
+          status.textContent='Cardul și detaliile au fost predate meniului de partajare. Alege WhatsApp și salonul (0769 729 403), apoi confirmă trimiterea. Livrarea nu este confirmată automat; plata rămâne neachitată.';
+          return;
+        }
         try { popup.location.href=url.href; } catch (error) {
           localStorage.setItem(key,JSON.stringify(records));throw error;
         }
-        status.textContent=`WhatsApp a fost deschis pentru solicitarea ${record.id}. Apasă „Trimite” în WhatsApp. Livrarea și acceptarea nu sunt confirmate automat. Plata cash este neachitată.`;
+        status.textContent=`WhatsApp a fost deschis pentru solicitarea ${record.id}. Apasă „Trimite” în WhatsApp. Acest browser nu permite atașarea directă a imaginii: apasă „Salvează cardul” și atașează-l în conversație. Livrarea nu este confirmată automat. Plata cash este neachitată.`;
       };
       if (navigator.locks) await navigator.locks.request('elyan-membership-submit',commit);
       else throw new Error('Browserul nu permite protecția sigură între file. Folosește o versiune actualizată de Chrome, Edge sau Safari.');
     } catch (error) {
-      popup?.close();status.textContent=error.message+' Nu am înregistrat o solicitare nouă.';
+      popup?.close();status.textContent=(error.name==='AbortError'?'Partajarea a fost anulată. Poți încerca din nou.':error.message)+' Nu am înregistrat o solicitare nouă.';
     } finally { busy=false; }
   }
   orderButton.addEventListener('click',submit,true);

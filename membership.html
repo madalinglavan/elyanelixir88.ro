@@ -31,7 +31,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <link rel="stylesheet" href="membership.css?v=20260908b">
-    <link rel="stylesheet" href="membership-card.css?v=20260918stamp">
+    <link rel="stylesheet" href="membership-card.css?v=20260918print">
     <link rel="stylesheet" href="membership-form.css?v=20260915">
     <link rel="stylesheet" href="membership-compact.css?v=20260915">
     <link rel="stylesheet" href="mobile-app.css?v=20260917">
@@ -127,19 +127,24 @@
                 <p>Configurație propusă · se confirmă de salon · nu este dovadă de plată</p>
             </div>
             <div class="card-actions">
-                <button id="download-card" type="button"><i class="fa-solid fa-download"></i> Descarcă imaginea</button>
-                <a id="whatsapp-order" href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Solicită prin WhatsApp</a>
-                <button id="share-card-image" type="button"><i class="fa-solid fa-share-nodes"></i> Partajează cardul ca imagine</button>
+                <button id="print-card-menu" type="button" aria-expanded="false" aria-controls="print-card-options"><i class="fa-solid fa-print"></i> Tipărește</button>
             </div>
-            <p id="submission-status" role="status" aria-live="polite" style="padding:16px;color:#073b2d;font-size:.8rem;line-height:1.7">1. Solicită abonamentul prin WhatsApp și trimite mesajul. 2. Partajează cardul ca imagine, alege WhatsApp și conversația Elyan Elixir 88 (0769 729 403). Pe dispozitivele fără partajare de imagini, descarcă și atașează cardul manual.</p>
-            <p id="image-share-status" role="status" aria-live="polite" style="padding:0 16px 16px;color:#073b2d;font-size:.8rem;line-height:1.7"></p>
+            <div id="print-card-options" hidden>
+                <h3>Ce dorești să faci cu cardul?</h3>
+                <div class="card-actions">
+                    <a id="whatsapp-order" href="#" target="_blank" rel="noopener noreferrer"><i class="fa-brands fa-whatsapp"></i> Trimite pe WhatsApp salonului</a>
+                    <button id="download-card" type="button"><i class="fa-solid fa-download"></i> Salvează cardul</button>
+                </div>
+                <p>La trimitere, alege WhatsApp și salonul Elyan Elixir 88 — 0769 729 403. Dacă browserul nu permite partajarea imaginii, salvează cardul și atașează-l manual în conversație. Salvarea nu înregistrează abonamentul în dashboard.</p>
+            </div>
+            <p id="submission-status" role="status" aria-live="polite" style="padding:16px;color:#073b2d;font-size:.8rem;line-height:1.7"></p>
         </section>
     </div>
 
     <script src="services.js?v=20260915b"></script>
     <script src="membership.js?v=20260918share"></script>
-    <script src="membership-workflow.js?v=20260918"></script>
-    <script src="membership-image-share.js?v=20260918"></script>
+    <script src="membership-workflow.js?v=20260918print"></script>
+    <script src="membership-print-menu.js?v=20260918"></script>
     <script src="mobile-app.js?v=20260918d"></script>
     <script src="navigation-loader.js?v=20260918"></script>
 </body>

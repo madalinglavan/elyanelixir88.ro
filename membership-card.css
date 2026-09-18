@@ -8,3 +8,9 @@
 .payment-validation__signature{display:grid;align-content:start;gap:6px}
 .payment-validation__signature div{min-height:24px;border-bottom:1px solid #a5b8ac;margin-bottom:4px}
 @media(max-width:350px){.payment-validation{padding:13px}.payment-validation__fields{grid-template-columns:90px 1fr;gap:12px}.payment-validation__stamp{min-height:100px}}
+.card-actions:has(#print-card-menu){grid-template-columns:1fr}
+#print-card-menu{background:#07543e;color:#fff;border-color:#07543e;font-size:.85rem}
+#print-card-options{margin-top:14px;padding:18px;border:1px solid #cadbd0;border-radius:18px;background:#fff}
+#print-card-options[hidden]{display:none}
+#print-card-options h3{margin:0;font:600 .85rem/1.5 Poppins,sans-serif;color:#073b2d}
+#print-card-options p{margin:14px 0 0;color:#53685d;font:.7rem/1.75 Poppins,sans-serif}

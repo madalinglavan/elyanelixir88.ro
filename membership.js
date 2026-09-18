@@ -1,4 +1,4 @@
-const categoryMeta={massage:{label:"Masaj",icon:"fa-spa",note:"Relaxare și recuperare"},fitness:{label:"Acces Fitness",icon:"fa-dumbbell",note:"Utilizare autonomă a aparatelor"},medicalPedicure:{label:"Pedichiură Medicală",icon:"fa-shoe-prints",note:"Îngrijire specializată"},nails:{label:"Healthy Nails",icon:"fa-hand-sparkles",note:"Sănătatea unghiilor"}};
+const categoryMeta={massage:{label:"Masaj",icon:"fa-spa",note:"Relaxare și recuperare"},fitness:{label:"Acces Fitness",icon:"fa-dumbbell",note:"Utilizare autonomă a aparatelor"},medicalPedicure:{label:"Pedichiură Medicală",icon:"fa-shoe-prints",note:"Îngrijire specializată"},nails:{label:"Îngrijirea unghiilor",icon:"fa-hand-sparkles",note:"Sănătatea unghiilor"}};
 const selections=new Map();
 const catalog=document.querySelector("#service-catalog");
 const summaryItems=document.querySelector("#summary-items");
@@ -22,9 +22,9 @@ const calculateValidity=value=>{if(!value)return null;const [year,month,day]=val
 Object.entries(window.services).forEach(([categoryKey,services],categoryIndex)=>{
   const meta=categoryMeta[categoryKey];
   const section=document.createElement("section");
-  section.className="category"+(categoryIndex===0?" open":"");
+  section.className="category";
   const button=document.createElement("button");
-  button.className="category-button";button.type="button";button.setAttribute("aria-expanded",String(categoryIndex===0));
+  button.className="category-button";button.type="button";button.setAttribute("aria-expanded","false");
   button.innerHTML=`<i class="fa-solid ${meta.icon}"></i><span><strong>${meta.label}</strong><small>${meta.note}</small></span><i class="fa-solid fa-chevron-down chevron"></i>`;
   const content=document.createElement("div");content.className="category-content";
   Object.entries(services).filter(([,service])=>!service.hidden).forEach(([serviceKey,service])=>service.options.forEach((option,optionIndex)=>{

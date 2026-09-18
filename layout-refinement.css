@@ -1,0 +1,91 @@
+/* A quieter title scale and a compact, touch-friendly mobile footer. */
+.app-salon .section-title{position:relative;text-align:center}
+.app-salon .section-title>span{display:inline-flex!important;align-items:center;justify-content:center;gap:11px;max-width:100%;min-height:50px;padding:12px 23px!important;margin:0 auto;border:1px solid #d4af3780!important;border-radius:16px!important;background:linear-gradient(135deg,#0f6048,#073b2d)!important;color:#f5df91!important;box-shadow:0 8px 22px #073b2d15!important;font:600 .8rem/1.5 Poppins,sans-serif!important;letter-spacing:.1em!important;text-transform:uppercase;text-align:center}
+.app-salon .section-title>span i{font-size:1.15rem;color:#efd477;flex-shrink:0}
+.app-salon .section-title>span::after{display:none!important}
+.app-salon .section-title h2,
+#massage .section-title h2,#fitness .section-title h2,
+#pedichiura .section-title h2,#nails .section-title h2{
+  max-width:850px;margin:20px auto 14px;font-size:clamp(2rem,2.7vw,2.8rem)!important;
+  line-height:1.15!important;text-wrap:balance;
+}
+.app-salon .about-modern__content h3{font-size:clamp(1.9rem,2.7vw,2.8rem);line-height:1.13;margin:12px 0 18px}
+.app-salon .service-content h3{font-size:clamp(1.8rem,2.5vw,2.65rem)!important;line-height:1.15}
+.app-salon .membership-title{font-size:clamp(2.4rem,4vw,3.8rem)!important;line-height:1.1!important}
+.app-salon .fitness-highlight h3{font-size:1.35rem;line-height:1.2}
+.app-salon .footer-cta h2{font-size:clamp(1.8rem,2.7vw,2.6rem);line-height:1.15}
+.app-salon .seo-faq h2{font-size:clamp(1.8rem,2.7vw,2.6rem);line-height:1.15}
+.app-salon .services-grid{margin-top:42px}
+.app-salon .service-image{position:relative}
+.app-salon .about-modern .about-features{align-items:stretch;gap:12px}
+.app-salon .about-modern .about-feature{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:12px;min-height:138px;text-align:center;padding:20px 14px}
+.app-salon .about-modern .about-feature i{margin:0;flex-shrink:0}
+.app-salon .about-modern .about-feature span{display:grid;gap:4px;text-align:center}
+.app-salon .about-modern__actions{justify-content:center;gap:12px;margin-top:4px}
+.app-salon .about-modern__actions .primary-btn,
+.app-salon .about-modern__actions .about-membership-link{
+  display:inline-flex;align-items:center;justify-content:center;gap:10px;
+  min-height:54px;padding:14px 22px;margin:0;border-radius:16px;
+  text-decoration:none;font:600 .8rem/1.4 Poppins,sans-serif;text-align:center;
+  transition:transform .2s ease,box-shadow .2s ease,background .2s ease;
+}
+.app-salon .about-modern__actions .primary-btn{background:linear-gradient(135deg,#117657,#07503b);border:1px solid #0b6046;color:#fff;box-shadow:0 8px 22px #073b2d21}
+.app-salon .about-modern__actions .primary-btn i{font-size:1.15rem;color:#fff}
+.app-salon .about-modern__actions .about-membership-link{background:#fffdf6;border:1px solid #d4af3766;color:#07503b}
+.app-salon .about-modern__actions a:hover{transform:translateY(-2px);box-shadow:0 10px 24px #073b2d24}
+.app-salon .about-modern__actions a:focus-visible{outline:3px solid #d4af37;outline-offset:4px}
+@media(max-width:768px){
+  .app-salon .section-title>span{min-height:44px;padding:10px 16px!important;font-size:.68rem!important;letter-spacing:.065em!important;gap:9px}
+  .app-salon .section-title>span i{font-size:1rem}
+  html:has(.app-salon){scroll-padding-top:224px}
+  .app-salon .app-category-tabs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));position:sticky;top:72px;z-index:30;gap:7px;padding:12px 16px;background:#edf4ef;border-bottom:1px solid #0f6a4d26;box-shadow:0 6px 18px #032a2010;overflow:visible}
+  .app-salon .app-category-tabs::before{content:'Alege serviciul dorit';grid-column:1/-1;color:#164b39;font:600 .68rem/1.4 Poppins,sans-serif;letter-spacing:.035em;margin-bottom:2px}
+  .app-salon .app-category-tabs a{display:flex;justify-content:center;align-items:center;gap:7px;min-width:0;min-height:42px;padding:9px 5px;border-radius:12px;background:#fff;border:1px solid #c9dcd0;color:#164b39;font-size:.68rem;text-align:center;line-height:1.3;white-space:normal}
+  .app-salon .app-category-tabs a.is-active{background:#073b2d;color:#efd477;border-color:#b99b36;box-shadow:0 3px 8px #073b2d18}
+  .app-salon .app-category-tabs a:focus-visible{outline:2px solid #b99b36;outline-offset:2px}
+  .app-salon .trust-ribbon__grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;gap:10px;width:100%;padding:0}
+  .app-salon .trust-ribbon__grid>div,.app-salon .trust-ribbon__grid>a{display:flex;align-items:center;gap:9px;min-width:0;min-height:94px;padding:13px 10px;flex:none}
+  .app-salon .trust-ribbon__grid i{display:grid;place-items:center;width:30px;height:30px;flex:0 0 30px;font-size:.85rem}
+  .app-salon .trust-ribbon__grid span{min-width:0;font-size:.7rem;line-height:1.5;overflow-wrap:anywhere}
+  .app-salon .trust-ribbon__grid small{font-size:.56rem;line-height:1.5;letter-spacing:.035em}
+  .app-salon .about-modern__actions{display:grid;grid-template-columns:1fr;width:100%;max-width:420px;margin:6px auto 0}
+  .app-salon .about-modern__actions a{width:100%}
+  .app-salon .about-modern .about-feature{display:flex;min-height:132px;padding:17px 10px;gap:10px}
+  .app-salon .about-modern .about-feature i{margin:0}
+  .app-salon .section-title h2,
+  #massage .section-title h2,#fitness .section-title h2,
+  #pedichiura .section-title h2,#nails .section-title h2{
+    font-size:clamp(1.65rem,7.4vw,1.95rem)!important;line-height:1.16!important;margin:16px auto 12px!important;
+  }
+  .app-salon .about-modern__content h3{font-size:1.8rem;line-height:1.16}
+  .app-salon .service-content h3{font-size:1.7rem!important;line-height:1.16!important}
+  .app-salon .membership-title{font-size:2.1rem!important;line-height:1.12!important}
+  .app-salon .hero h2{font-size:clamp(2rem,8.5vw,2.5rem)!important;line-height:1.12!important;margin-block:20px 16px!important}
+  .app-salon .fitness-highlight h3{font-size:.78rem}
+  .app-salon .site-footer{padding:0 0 12px;background:#032a20}
+  .app-salon .site-footer::before{display:none}
+  .app-salon .site-footer>.container{width:calc(100% - 32px);max-width:560px;margin-inline:auto}
+  .app-salon .site-footer .footer-cta{display:grid;gap:18px;padding:24px 20px;border-radius:0 0 24px 24px;text-align:left}
+  .app-salon .footer-cta h2{font-size:1.8rem;margin:8px 0 10px}
+  .app-salon .footer-cta span{font-size:.6rem;letter-spacing:.12em}
+  .app-salon .footer-cta p{color:#d6e7dd}
+  .app-salon .footer-cta__actions{display:grid;grid-template-columns:1fr;gap:8px;width:100%}
+  .app-salon .footer-cta__actions a{min-height:46px;justify-content:center;font-size:.75rem}
+  .app-salon .site-footer .footer-container{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:24px 0}
+  .app-salon .site-footer .footer-brand{display:grid;grid-template-columns:56px 1fr;align-items:center;gap:12px;grid-column:1/-1;order:0;text-align:left;padding:0 4px 4px}
+  .app-salon .site-footer .footer-brand img{width:56px;height:auto;margin:0;grid-row:1/3}
+  .app-salon .site-footer .footer-brand p{margin:0;font-size:.75rem;line-height:1.65;color:#d2e4d8}
+  .app-salon .site-footer .footer-location{grid-column:2;font-size:.7rem!important;min-height:32px;margin:0}
+  .app-salon .site-footer .footer-column{display:flex;flex-direction:column;align-items:stretch;gap:0;min-width:0;padding:16px 13px;border:1px solid #d4af3726;border-radius:18px;background:#ffffff05;order:2;text-align:left}
+  .app-salon .site-footer .footer-column h3{margin:0 0 8px;font:600 .68rem/1.4 Poppins,sans-serif;letter-spacing:.09em;color:#efd477;text-align:left}
+  .app-salon .site-footer .footer-column a{display:flex;align-items:center;min-height:40px;margin:0;font-size:.73rem;line-height:1.45;color:#e0eee5;text-align:left;text-decoration:none;overflow-wrap:anywhere}
+  .app-salon .site-footer .footer-contact-column{grid-column:1/-1;order:1;padding:18px}
+  .app-salon .site-footer .footer-contact-column a{gap:10px;font-size:.79rem}
+  .app-salon .site-footer .footer-hours{display:grid;grid-template-columns:1fr 1fr;gap:12px;max-width:none;margin:12px 0 0;padding-top:14px}
+  .app-salon .site-footer .footer-hours span{display:grid;gap:4px}
+  .app-salon .site-footer .footer-hours small{font-size:.67rem;color:#bdd4c6}
+  .app-salon .site-footer .footer-hours strong{font-size:.77rem;color:#fff}
+  .app-salon .site-footer .footer-bottom{display:grid;justify-items:start;gap:10px;margin-top:0;padding:18px 4px;text-align:left}
+  .app-salon .site-footer .footer-bottom p,.app-salon .site-footer .footer-bottom>span{font-size:.65rem;line-height:1.7;color:#bdd4c6}
+  .app-salon .site-footer a:focus-visible{outline:2px solid #efd477;outline-offset:4px;border-radius:6px}
+}

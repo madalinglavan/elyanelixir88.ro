@@ -1,0 +1,5 @@
+User-agent: *
+Allow: /
+
+# Dashboard-ul are noindex în HTML; permite crawl pentru citirea directivei.
+Sitemap: https://www.elyanelixir88.ro/sitemap.xml

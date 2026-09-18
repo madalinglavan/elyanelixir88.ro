@@ -1,5 +1,5 @@
 (() => {
-  const categories=[{id:'massage',label:'Masaj',icon:'spa'},{id:'fitness',label:'Fitness',icon:'dumbbell'},{id:'pedichiura',label:'Pedichiură',icon:'shoe-prints'},{id:'nails',label:'Healthy Nails',icon:'hand-sparkles'}];
+  const categories=[{id:'massage',label:'Masaj',icon:'spa'},{id:'fitness',label:'Fitness',icon:'dumbbell'},{id:'pedichiura',label:'Pedichiură',icon:'shoe-prints'},{id:'nails',label:'Îngrijirea unghiilor',icon:'hand-sparkles'}];
   const isConfigurator=Boolean(document.querySelector('#service-catalog'));
   document.body.classList.add('elyan-app',isConfigurator?'app-configurator':'app-salon');
   const home=isConfigurator?'index.html#home':'#home';
